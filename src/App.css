@@ -1283,6 +1283,12 @@ border: 2px solid black;
 }
 
 @media(max-width:768px){
+
+  .container-space-yaxis{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
   .backgroundColor {
     margin-top: 140px;
     background: #FEB20F;
@@ -1332,6 +1338,7 @@ border: 2px solid black;
   justify-content: center;
   gap: 10px;
 }
+
 }
 .bg-light-button{
   background-color: rgb(164, 162, 162);
