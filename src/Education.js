@@ -23,7 +23,7 @@ function Education(){
                 <div className="dflexjustspaceBetween">
 <div>
     <button className="image-design">
-        <img src="/Frame.png" className="mt-2" style={{width:"30px"}}/>2017-2020
+        <img src="/Frame.png" className="mt-2 buttonImg" />2017-2020
     </button>
 </div>
 <div>
@@ -43,7 +43,7 @@ Bachelor's Degree
 </div>
 </div>
 <div>
-    <h3 className="mt-3">Bachelor of Computer Applications</h3>
+    <div className="mt-3 card-text">Bachelor of Computer Applications</div>
 </div>
 <div className="twoitemsinOneLine">
     <div className="bgWhite">
@@ -93,7 +93,7 @@ MCA
 </div>
 </div>
 <div>
-<h3 className="mt-3">Master of Computer Applications</h3>
+<div className="mt-3 card-text">Master of Computer Applications</div>
 </div>
 <div className="twoitemsinOneLine">
 <div className="bgWhite-secodContainer">

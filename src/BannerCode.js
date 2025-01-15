@@ -108,32 +108,32 @@ function BannerCode(){
                         </div>
                         <div className="nextjsButton">
                             <button className="fontSize-dark">
-                            <img src="/download (4) 1.png" style={{width:"30px"}} />   NextJS
+                            <img src="/download (4) 1.png"  className="images"  />   NextJS
                             </button>
                         </div>
                         <div className="nextjsButtonTwo">
                             <button className="fontSize-dark">
-                            <img src="/react 1.png" style={{width:"30px"}} />  ReactJs
+                            <img src="/react 1.png"  className="images" />  ReactJs
                             </button>
                         </div>
                         <div className="nextjsButtonThree">
                             <button className="fontSize-dark">
-                            <img src="/download (3) 1.png" style={{width:"30px"}} />  GraphQl
+                            <img src="/download (3) 1.png"  className="images"  />  GraphQl
                             </button>
                         </div>
                         <div className="nextjsButtonFour">
                             <button className="fontSize-dark">
-                            <img src="/download (2) 1.png" style={{width:"30px"}} />  Tailwind CSS
+                            <img src="/download (2) 1.png"  className="images"  />  Tailwind CSS
                             </button>
                         </div>
                         <div className="nextjsButtonFive">
                             <button className="fontSize-dark">
-                            <img src="/js 3.png" style={{width:"30px"}} />  JavaScript
+                            <img src="/js 3.png"  className="images" />  JavaScript
                             </button>
                         </div>
                         <div className="nextjsButtonSix">
                             <button className="fontSize-dark">
-                            <img src="/figma 1.png" style={{width:"30px"}} /> Figma
+                            <img src="/figma 1.png"  className="images" /> Figma
                             </button>
                         </div>
                     </div>

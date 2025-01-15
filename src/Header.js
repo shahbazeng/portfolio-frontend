@@ -20,7 +20,7 @@ const {toggle , toggleHandler} = useContext(MyContext);
         toggle?(
         <div>
          <Container>
-            <Navbar className='bg-light  borderRounded' expand="lg">
+            <Navbar className='bg-light  borderRounded p-0' expand="lg">
               
                 <Navbar.Brand className='bg-dark borderradius'>
                     <img src='/NJ.png' alt='nj.png' className='img'/>

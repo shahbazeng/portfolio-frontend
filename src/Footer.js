@@ -40,7 +40,7 @@ Portfolio Made With
 {/* Footer */}
 
 <div>
-    <div className="backgroundColorYellow ">
+    <div className="backgroundColorYellow">
         <div className="d-flex align-items-center gap-2">
 
        
@@ -50,11 +50,11 @@ Portfolio Made With
             
            
         </div>
-        <div className="fs-4">
+        <div className="font-size-manage">
             Shahbaz <span className="fw-bold">Ali</span>
         </div>
         </div>
-        <div className="fs-4">
+        <div className="font-size-manage">
         Designed & Build by <span className="fw-bold">SHEHBAZ ALI  </span>
         </div>
     </div>
@@ -102,11 +102,11 @@ Portfolio Made With
             
            
         </div>
-        <div className="fs-4">
+        <div  className="font-size-manage">
             Shahbaz <span className="fw-bold">Ali</span>
         </div>
         </div>
-        <div className="fs-4">
+        <div  className="font-size-manage">
         Designed & Build by <span className="fw-bold">SHEHBAZ ALI  </span>
         </div>
     </div>

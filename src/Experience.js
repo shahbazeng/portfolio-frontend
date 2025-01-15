@@ -19,8 +19,8 @@ Experiance
         </div>
         <div className="bgLightTextBlack">
             
-        <Row>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+        <Row className="dispaly-flex-direction-column">
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}  className="position-absolute-simple">
             
             <div className="backgroundBlack">
                 <div className="colorSize">
@@ -39,7 +39,7 @@ Experiance
                 </button>
             </div> */}
             </Col>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             
             
@@ -109,8 +109,8 @@ and accessibility.
 
         <div className="bgLightTextBlack-second-container">
             
-            <Row>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Row className="dispaly-flex-direction-column">
+                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
                 
                 <div className="backgroundBlack">
                     <div className="colorSize">
@@ -129,7 +129,7 @@ and accessibility.
                     </button>
                 </div> */}
                 </Col>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
                 
                 
                 
@@ -209,8 +209,8 @@ developers, contributing to skill development with inthe company.
             </div>
             <div className="bgLightTextBlack">
             
-        <Row>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+        <Row className="dispaly-flex-direction-column">
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             <div className="backgroundBlack">
                 <div className="colorSize">
@@ -225,7 +225,7 @@ developers, contributing to skill development with inthe company.
             </div>
           
             </Col>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             
             
@@ -288,8 +288,8 @@ Experiance
         </div>
         <div className="bgLightTextBlack-dark">
             
-        <Row>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+        <Row className="dispaly-flex-direction-column">
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             <div className="backgroundBlack">
                 <div className="colorSize">
@@ -308,7 +308,7 @@ Experiance
                 </button>
             </div> */}
             </Col>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             
             
@@ -378,8 +378,8 @@ and accessibility.
 
         <div className="bgLightTextBlack-second-container">
             
-            <Row>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Row className="dispaly-flex-direction-column">
+                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
                 
                 <div className="backgroundBlack">
                     <div className="colorSize">
@@ -398,7 +398,7 @@ and accessibility.
                     </button>
                 </div> */}
                 </Col>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
                 
                 
                 
@@ -478,8 +478,8 @@ developers, contributing to skill development with inthe company.
             </div>
             <div className="bgLightTextBlack-dark">
             
-        <Row>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+        <Row className="dispaly-flex-direction-column">
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}  className="position-absolute-simple">
             
             <div className="backgroundBlack">
                 <div className="colorSize">
@@ -494,7 +494,7 @@ developers, contributing to skill development with inthe company.
             </div>
           
             </Col>
-            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className="position-absolute-simple">
             
             
             

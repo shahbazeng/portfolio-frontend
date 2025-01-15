@@ -86,7 +86,7 @@ function FormData(){
            </div>
         </Row>
         <div className="posabsolute">
-        <img src="/developer 1.png" alt="banner-image" style={{width:"250px"}} className="form-under-image"/>
+        <img src="/developer 1.png" alt="banner-image"  className="developer-image"/>
         </div>
     </div>
     <hr className="horizontaline-one"/>
@@ -169,7 +169,7 @@ function FormData(){
            </div>
         </Row>
         <div className="posabsolute">
-        <img src="/developer 1.png" alt="banner-image" style={{width:"250px"}}/>
+        <img src="/developer 1.png" alt="banner-image" className="developer-image"/>
         </div>
     </div>
     <hr className="horizontaline-one"/>
