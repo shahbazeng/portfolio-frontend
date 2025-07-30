@@ -208,8 +208,12 @@ function FormData() {
                     type="text"
                     placeholder="Full Name*"
                     className="BorderNone"
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </Form.Group>
+                {err && !name && (
+                  <div className="text-danger">Name is require</div>
+                )}
               </Col>
               <Col xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
                 <Form.Group className="mt-3 mb-3 image-inputField-flex">
@@ -225,8 +229,12 @@ function FormData() {
                     type="text"
                     placeholder="Email*"
                     className="BorderNone"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Group>
+                {err && !email && (
+                  <div className="text-danger">Email is require</div>
+                )}
               </Col>
             </Row>
 
@@ -245,8 +253,12 @@ function FormData() {
                     type="text"
                     placeholder="Mobile No."
                     className="BorderNone"
+                    onChange={(e) => setMobile(e.target.value)}
                   />
                 </Form.Group>
+                {err && !mobile && (
+                  <div className="text-danger">Mobile is require</div>
+                )}
               </Col>
               <Col xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
                 <Form.Group className="mt-3 mb-3 image-inputField-flex">
@@ -254,8 +266,12 @@ function FormData() {
                     type="text"
                     placeholder="Subject*"
                     className="BorderNone-one"
+                    onChange={(e) => setSubject(e.target.value)}
                   />
                 </Form.Group>
+                {err && !subject && (
+                  <div className="text-danger">Subject is require</div>
+                )}
               </Col>
             </Row>
             <Row>
@@ -263,10 +279,17 @@ function FormData() {
                 <textarea
                   placeholder="Message*"
                   className="BorderNone-one height-width-setup"
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </Form.Group>
+              {err && !message && (
+                <div className="text-danger">Message is require</div>
+              )}
               <div>
-                <button className="imageAndtextButton-one">
+                <button
+                  className="imageAndtextButton-one"
+                  onClick={submitHandler}
+                >
                   Send{" "}
                   <img
                     src="/Livello_2 (1).png"
