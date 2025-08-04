@@ -24,7 +24,7 @@ function Header() {
               <span className="disflex">
                 <div>
                   <Nav.Link href="#">
-                    NIKUNJ<span className="fw-bold">THESIYA</span>
+                    Shahbaz<span className="fw-bold">Ali</span>
                   </Nav.Link>
                 </div>
 
@@ -76,7 +76,7 @@ function Header() {
               <span className="disflex">
                 <div>
                   <Nav.Link href="#">
-                    NIKUNJ<span className="fw-bold">THESIYA</span>
+                    Shahbaz<span className="fw-bold">Ali</span>
                   </Nav.Link>
                 </div>
 
