@@ -8,13 +8,17 @@ import { useState } from "react";
 import axios from "axios";
 
 function About() {
-  const [aboutData, setAboutData] = useState([]);
+  const [result2, setResult2] = useState([]);
+  const [userData, setUserData] = useState([]);
+
   const { toggle } = useContext(MyContext);
 
   useEffect(() => {
     axios.get("http://localhost:5000/about_section").then((res) => {
-      setAboutData(res.data.user.description);
-      console.log(res.data.user.description);
+      setResult2(res.data.result2);
+      setUserData(res.data.user);
+      console.log("res resul 2", res.data.result2);
+      console.log("res user data", res.data.user);
     });
   }, []);
   return toggle ? (
@@ -23,7 +27,11 @@ function About() {
         <div>
           <div className="second-conatiner">About Me</div>
           <div className="fzImageText">
-            <img src="/Ellipse 9.png" style={{ width: "50px" }} /> I Love
+            <img
+              src={`http://localhost:5000/${userData.profile_image}`}
+              style={{ width: "80px" }}
+            />
+            {userData.name}
           </div>
           <Row className="mt-5">
             <Col
@@ -35,23 +43,63 @@ function About() {
               xxl={6}
               className="fourButtonsWrapIndiv"
             >
+              <div className="buttonsGrid">
+                {result2.slice(0, 4).map((item, index) => (
+                  <button key={index} className="fontSizeTwo">
+                    <img
+                      src={`http://localhost:5000/${item.icon}`}
+                      alt="icon"
+                      style={{ width: "30px" }}
+                    />
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            </Col>
+
+            <Col xs={0} sm={0} md={1} lg={1} xl={1} xxl={1}></Col>
+            <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>
+              <div className="twoContainerdisplayFlex">
+                <div className="width-height-div">
+                  <div className="textManageColor">{userData.experience}+</div>
+                  <div className="year">Years</div>
+                  <div className="experience">Experience</div>
+                </div>
+                <div className="width-height-div">
+                  <div className="textManageColor">{userData.experience}+</div>
+                  <div className="year">Years</div>
+                  <div className="experience">Experience</div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          {/* <Row className="mt-5">
+            <Col
+              xs={12}
+              sm={12}
+              md={12}
+              lg={6}
+              xl={6}
+              xxl={6}
+              className="fourButtonsWrapIndiv"
+            >
               <div className="display-flex-gap">
                 <button className="fontSizeOne">
-                  <img src="/headphones 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/headphones 1.png" style={{ width: "30px" }} />
                   Listeing to Music
                 </button>
                 <button className="fontSizeOne">
-                  <img src="/travel 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/travel 1.png" style={{ width: "30px" }} />
                   Travelling
                 </button>
               </div>
               <div className="display-flex-gap">
                 <button className="fontSizeTwo">
-                  <img src="/mountain 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/mountain 1.png" style={{ width: "30px" }} />
                   Mountains
                 </button>
                 <button className="fontSizeTwo">
-                  <img src="/flying-money 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/flying-money 1.png" style={{ width: "30px" }} />
                   Money
                 </button>
               </div>
@@ -60,18 +108,18 @@ function About() {
             <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>
               <div className="twoContainerdisplayFlex">
                 <div className="width-height-div">
-                  <div className="textManageColor">3.9+</div>
+                  <div className="textManageColor">{userData.experience}+</div>
                   <div className="year">Years</div>
                   <div className="experience">Experience</div>
                 </div>
                 <div className="width-height-div">
-                  <div className="textManageColor">3.9+</div>
+                  <div className="textManageColor">{userData.experience}+</div>
                   <div className="year">Years</div>
                   <div className="experience">Experience</div>
                 </div>
               </div>
             </Col>
-          </Row>
+          </Row> */}
           <div className="background-setup">
             {/* A Passionate Front End Developer with a Master's and Computer
             Application and over 3.9 Years of experience in crafting captivating
@@ -90,7 +138,7 @@ function About() {
             likeCricTracker,Sportsbuzz, and epiko market, I am commited to
             pushing the boundries of web develp to deliver the exceptional
             digital solution. */}
-            {aboutData}
+            {userData.description}
           </div>
           <div className="align-center">
             <button className="imageText">
@@ -122,21 +170,21 @@ function About() {
             >
               <div className="display-flex-gap">
                 <button className="fontSizeOne bg-light-button">
-                  <img src="/headphones 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/headphones 1.png" style={{ width: "30px" }} />
                   Listeing to Music
                 </button>
                 <button className="fontSizeOne bg-light-button">
-                  <img src="/travel 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/travel 1.png" style={{ width: "30px" }} />
                   Travelling
                 </button>
               </div>
               <div className="display-flex-gap">
                 <button className="fontSizeTwo bg-light-button">
-                  <img src="/mountain 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/mountain 1.png" style={{ width: "30px" }} />
                   Mountains
                 </button>
                 <button className="fontSizeTwo bg-light-button">
-                  <img src="/flying-money 1.png" style={{ width: "30px" }} />{" "}
+                  <img src="/flying-money 1.png" style={{ width: "30px" }} />
                   Money
                 </button>
               </div>
@@ -158,7 +206,7 @@ function About() {
             </Col>
           </Row>
           <div className="background-setup">
-            {/* A Passionate Front End Developer with a Master's and Computer
+            A Passionate Front End Developer with a Master's and Computer
             Application and over 3.9 Years of experience in crafting captivating
             digital experience. My expertise lies in leveraging cutting-edge
             technologies such a ReactJS, NextJS,Apollo GraphQL, Redux, React
@@ -174,8 +222,7 @@ function About() {
             record of contributing to well-known products
             likeCricTracker,Sportsbuzz, and epiko market, I am commited to
             pushing the boundries of web develp to deliver the exceptional
-            digital solution. */}
-            {aboutData}
+            digital solution.
           </div>
           <div className="align-center">
             <button className="imageText">
