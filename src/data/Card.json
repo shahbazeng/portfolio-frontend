@@ -1,0 +1,35 @@
+{
+  "title": "By Me a Coffee",
+  "cards": [
+    {
+      "text": "Modren Resume / CV Figma Design Made by me",
+      "price": "10$",
+      "ctaLabel": "Purchase Design",
+      "href": "#",
+      "wrapperLight": "backgroundwhite",
+      "wrapperDark": "backgroundwhite-dark",
+      "ctaClassLight": "buttonTwoDesign",
+      "ctaClassDark": "buttonTwoDesign"
+    },
+    {
+      "text": "Modren Resume / CV Figma Design Made by me",
+      "price": "10$",
+      "ctaLabel": "Purchase Design",
+      "href": "#",
+      "wrapperLight": "backgroundwhite-one",
+      "wrapperDark": "backgroundwhite-one",
+      "ctaClassLight": "buttonTwoDesign-one",
+      "ctaClassDark": "buttonTwoDesign-one"
+    },
+    {
+      "text": "Modren Resume / CV Figma Design Made by me",
+      "price": "10$",
+      "ctaLabel": "Purchase Design",
+      "href": "#",
+      "wrapperLight": "backgroundwhite",
+      "wrapperDark": "backgroundwhite-dark",
+      "ctaClassLight": "buttonTwoDesign",
+      "ctaClassDark": "buttonTwoDesign"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "intro": {
+    "greeting": "Hello! I'm",
+    "name": "Shahbaz Ali",
+    "title": "A Front End Developer | Web Designer",
+    "experience": "3.9 + year"
+  },
+  "buttons": {
+    "resume": {
+      "label": "Resume",
+      "icon": "/Livello_2 (1).png",
+      "file": "./canvashabir1.pdf"
+    },
+    "hire": {
+      "label": "Hire Me"
+    }
+  },
+  "technologies": [
+    {
+      "name": "NextJS",
+      "icon": "/download (4) 1.png"
+    },
+    {
+      "name": "ReactJs",
+      "icon": "/react 1.png"
+    },
+    {
+      "name": "GraphQl",
+      "icon": "/download (3) 1.png"
+    },
+    {
+      "name": "Tailwind CSS",
+      "icon": "/download (2) 1.png"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "/js 3.png"
+    },
+    {
+      "name": "Figma",
+      "icon": "/figma 1.png"
+    }
+  ],
+  "bannerImage": {
+    "src": "/banner_img.png",
+    "alt": "banner-img",
+    "style": {
+      "width": "850px",
+      "height": "auto"
+    }
+  }
+}

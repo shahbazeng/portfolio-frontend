@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Form } from "react-bootstrap";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
+import bannerData from "./data/Banner.json";
 
 function BannerCode() {
   const [name, setName] = useState("");
@@ -18,6 +19,7 @@ function BannerCode() {
   const [open_close, setOpen_Close] = useState(false);
 
   const { toggle } = useContext(MyContext);
+  const classNames = ["One", "Two", "Three", "Four", "Five", "Six"];
 
   // 🔹 Real-time email validation
   const handleEmailChange = (value) => {
@@ -93,12 +95,20 @@ function BannerCode() {
   const togglecloseIcon = () => {
     setOpen_Close(false);
   };
+  const positionClasses = [
+    "nextjsButton", // 0 => NextJS
+    "nextjsButtonTwo", // 1 => ReactJs
+    "nextjsButtonThree", // 2 => GraphQl
+    "nextjsButtonFour", // 3 => Tailwind CSS
+    "nextjsButtonFive", // 4 => JavaScript
+    "nextjsButtonSix", // 5 => Figma
+  ];
 
   return toggle ? (
     <>
       <div style={{ position: "relative", zIndex: 1 }}>
         <Container>
-          <div className="textLight">
+          {/* <div className="textLight">
             Hello! I'm <span className="change-color">Shahbaz Ali</span>
           </div>
           <div className="fontweight">A Front End Developer | Web Designer</div>
@@ -119,7 +129,33 @@ function BannerCode() {
             <button className="btn-two" onClick={() => hireSetup()}>
               Hire Me
             </button>
+          </div> */}
+          <div className="textLight">
+            {bannerData.intro.greeting}{" "}
+            <span className="change-color">{bannerData.intro.name}</span>
           </div>
+          <div className="fontweight">{bannerData.intro.title}</div>
+          <div className="textbtncenter">
+            with
+            <button>{bannerData.intro.experience}</button>
+            Experience
+          </div>
+
+          <div className="textCenterWithButton">
+            <a
+              href={bannerData.buttons.resume.file}
+              download
+              className="btn-one"
+              style={{ textDecoration: "none" }}
+            >
+              <MdOutlineFileDownload className="svgIcon" />{" "}
+              {bannerData.buttons.resume.label}
+            </a>
+            <button className="btn-two" onClick={() => hireSetup()}>
+              {bannerData.buttons.hire.label}
+            </button>
+          </div>
+
           <div className="posrel">
             <div className="positionZindex">
               <img
@@ -130,7 +166,7 @@ function BannerCode() {
             </div>
 
             <div className="backgroundColor"></div>
-            <div className="nextjsButton">
+            {/* <div className="nextjsButton">
               <button className="fontSize">
                 <img src="/download (4) 1.png" className="images" /> NextJS
               </button>
@@ -160,7 +196,15 @@ function BannerCode() {
               <button className="fontSize">
                 <img src="/figma 1.png" className="images" /> Figma
               </button>
-            </div>
+            </div> */}
+            {bannerData.technologies.slice(0, 6).map((tech, index) => (
+              <div key={tech.name} className={positionClasses[index]}>
+                <button className="fontSize">
+                  <img src={tech.icon} className="images" alt={tech.name} />{" "}
+                  {tech.name}
+                </button>
+              </div>
+            ))}
           </div>
         </Container>
         {open_close ? (
@@ -300,7 +344,7 @@ function BannerCode() {
   ) : (
     <>
       <div style={{ position: "relative", zIndex: 1 }}>
-        <Container>
+        {/* <Container>
           <div className="textLight-dark">
             Hello! I'm <span className="change-color">Shahbaz Ali</span>
           </div>
@@ -367,6 +411,58 @@ function BannerCode() {
                 <img src="/figma 1.png" className="images" /> Figma
               </button>
             </div>
+          </div>
+        </Container> */}
+        <Container>
+          {/* intro (dark) — JSON se */}
+          <div className="textLight-dark">
+            {bannerData.intro.greeting}{" "}
+            <span className="change-color">{bannerData.intro.name}</span>
+          </div>
+          <div className="fontweight-dark">{bannerData.intro.title}</div>
+          <div className="textbtncenter-dark">
+            with
+            <button>{bannerData.intro.experience}</button>
+            Experience
+          </div>
+
+          {/* buttons (dark) — JSON se */}
+          <div className="textCenterWithButton">
+            <a
+              href={bannerData.buttons.resume.file}
+              download
+              className="btn-one"
+              style={{ textDecoration: "none" }}
+            >
+              <MdOutlineFileDownload className="svgIcon" />{" "}
+              {bannerData.buttons.resume.label}
+            </a>
+            <button className="btn-two" onClick={hireSetup}>
+              {bannerData.buttons.hire.label}
+            </button>
+          </div>
+
+          <div className="posrel">
+            <div className="positionZindex">
+              <img
+                src={bannerData.bannerImage.src}
+                alt={bannerData.bannerImage.alt}
+                className="img-fluid"
+                style={bannerData.bannerImage.style}
+              />
+            </div>
+
+            <div className="backgroundColor"></div>
+
+            {/* tech badges (dark) — dynamic */}
+            {bannerData.technologies.slice(0, 6).map((tech, index) => (
+              <div key={tech.name} className={positionClasses[index]}>
+                <button className="fontSize-dark">
+                  <img src={tech.icon} className="images" alt={tech.name} />{" "}
+                  {tech.name}
+                </button>
+              </div>
+            ))}
           </div>
         </Container>
         {open_close ? (

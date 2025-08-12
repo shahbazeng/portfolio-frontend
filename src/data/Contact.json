@@ -1,0 +1,33 @@
+{
+  "title": "Connect With Me",
+  "socialButtons": [
+    {
+      "name": "Linkedin",
+      "icon": "/linkedin.png"
+    },
+    {
+      "name": "Instagram",
+      "icon": "/download (15) 5.png"
+    },
+    {
+      "name": "Facebook",
+      "icon": "/download (16) 2.png"
+    },
+    {
+      "name": "Telegram",
+      "icon": "/download (17) 2.png"
+    },
+    {
+      "name": "Twitter",
+      "icon": "/download (18) 2.png"
+    },
+    {
+      "name": "Skype",
+      "icon": "/download (29) 1.png"
+    }
+  ],
+  "emailButton": {
+    "email": "shahbazali@gmail.com",
+    "icon": "/download (30) 1.png"
+  }
+}

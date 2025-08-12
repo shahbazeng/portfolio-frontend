@@ -1,0 +1,54 @@
+{
+  "title": "Certificate",
+  "browserIcon": "/browser 1.png",
+  "certificates": [
+    {
+      "provider": "Udemy",
+      "logo": "/letter-u.png",
+      "title": "Advanced CSS and Sass: Flexbox, Grid, Animations and More!",
+      "styleClass": "parent-div-in-cards",
+      "buttonClass": "buttonTypediv",
+      "viewBtnClass": "btn-design"
+    },
+    {
+      "provider": "Udemy",
+      "logo": "/letter-u.png",
+      "title": "The Complete JavaScript Course 2020: From Zero to Expert!",
+      "styleClass": "parent-div-in-cards",
+      "buttonClass": "buttonTypediv",
+      "viewBtnClass": "btn-design"
+    },
+    {
+      "provider": "Coursera",
+      "logo": "/download (5).png",
+      "title": "Google UX Design",
+      "styleClass": "parent-div-in-cards-container-second",
+      "buttonClass": "buttonTypediv-second-container",
+      "viewBtnClass": "btn-design-second-Container"
+    },
+    {
+      "provider": "FreeCodeCamp",
+      "logo": "/download (11).png",
+      "title": "Front End Libraries",
+      "styleClass": "parent-div-in-cards-container-second",
+      "buttonClass": "buttonTypediv-third-container",
+      "viewBtnClass": "btn-design-second-Container"
+    },
+    {
+      "provider": "Linkedin",
+      "logo": "/linkedin.png",
+      "title": "React.js Essential Training !",
+      "styleClass": "parent-div-in-cards",
+      "buttonClass": "buttonTypediv-second-container",
+      "viewBtnClass": "btn-design"
+    },
+    {
+      "provider": "Educative",
+      "logo": "/notes.png",
+      "title": "Understanding Redux: A Beginner's Guide To State Management",
+      "styleClass": "parent-div-in-cards",
+      "buttonClass": "buttonTypediv-second-container",
+      "viewBtnClass": "btn-design"
+    }
+  ]
+}

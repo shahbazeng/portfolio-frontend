@@ -1,0 +1,30 @@
+{
+  "title": "Checkout my Resume",
+  "avatar": {
+    "src": "/boy (1).png",
+    "alt": "image",
+    "widthPx": 50,
+    "className": "image-border"
+  },
+  "names": {
+    "light": "Shahbaz Ali",
+    "dark": "NIKUNJ THESIYA"
+  },
+  "tagline": "Frontend Developer | Web Developer | UI Developer",
+  "classes": {
+    "taglineLight": "text-light",
+    "taglineDark": "text-dark"
+  },
+  "buttons": {
+    "resume": {
+      "label": "Resume",
+      "file": "./canvashabir1.pdf",
+      "className": "btn-one"
+    },
+    "discuss": {
+      "label": "Discuss Project",
+      "href": "#",
+      "className": "btn-two"
+    }
+  }
+}

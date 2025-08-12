@@ -1,0 +1,23 @@
+{
+  "sectionTitle": "About Me",
+  "user": {
+    "name": "Shahbaz Ali",
+    "avatar": "/Ellipse9.png",
+    "experience": "3.9",
+    "description": "A Passionate Front End Developer with a Master's in Computer Applications and over 3.9 Years of experience in crafting captivating digital experiences. My expertise lies in leveraging cutting-edge technologies such as ReactJS, NextJS, Apollo GraphQL, Redux, React Query and various UI frameworks including Material UI, NextUI, SCSS, Tailwind CSS, Chakra and Bootstrap. I take pride in my ability to design seamless user interfaces and components that align perfectly with the intended aesthetic, creating responsive websites that adapt gracefully to any device. My skill set also extends to proficient API integration, ensuring the seamless flow of data between front end and back end. In addition, I am known for writing clean, well-structured code that not only functions flawlessly but also enhances the overall maintainability of projects. With a track record of contributing to well-known products like CricTracker, Sportsbuzz, and Epiko Market, I am committed to pushing the boundaries of web development to deliver exceptional digital solutions."
+  },
+  "hobbies": [
+    { "title": "Listening to Music", "icon": "/headphones 1.png" },
+    { "title": "Travelling", "icon": "/travel 1.png" },
+    { "title": "Mountains", "icon": "/mountain 1.png" },
+    { "title": "Money", "icon": "/flying-money 1.png" }
+  ],
+  "stats": [
+    { "value": "3.9+", "top": "Years", "bottom": "Experience" },
+    { "value": "3.9+", "top": "Years", "bottom": "Experience" }
+  ],
+  "cta": {
+    "label": "Contact Me",
+    "icon": "/Livello_2 (1).png"
+  }
+}

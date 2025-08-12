@@ -1,0 +1,52 @@
+{
+  "title": "Experiance",
+  "icons": {
+    "location": "/Vector.png",
+    "calendar": "/Frame (1).png",
+    "roleIcon": "/boy.png",
+    "bullet": "/Livello_2.png"
+  },
+  "jobs": [
+    {
+      "company": "Troolnbound Pvt .Ltd.",
+      "location": "Surat, Gujrat, India",
+      "logo": "/cap (2).png",
+      "dateRange": "Dec 2024-Present",
+      "role": "Front End Developer",
+      "highlights": [
+        "Designed and developed over 15 complete React and NextJS full theme templates showcasing proficiency in front-end design and development.",
+        "Led the development of the Wired Academy project, a full-stack NextJS application.",
+        "Managed both front-end and back-end aspects, utilizing NextJS API Routes for seamless interaction.",
+        "Integrated Stripe Payment Gateway for secure transactions.",
+        "Successfully deployed the application on Vercel for optimal performance and accessibility."
+      ]
+    },
+    {
+      "company": "Yudiz Solution Ltd.",
+      "location": "Ahmabad Lahore",
+      "logo": "/logo (2).png",
+      "dateRange": "Jan 2023- May 2024",
+      "role": "Front End Developer",
+      "highlights": [
+        "Worked on a variety of projects, including Epiko market, CricTraker, and Sportsbuzz.",
+        "Collaborated in teams of developers, UI designers, and backend developers.",
+        "Designed and built reusable components and pages, ensuring responsiveness and adherence to design.",
+        "Handled API integrations, reviewed junior developers’ pull requests, and assigned tasks according to sprint objectives.",
+        "Played a crucial role in project deployment and debugging across multiple environments.",
+        "Conducted training sessions on JavaScript, Responsive Web Design, and ReactJS for trainees and junior developers."
+      ]
+    },
+    {
+      "company": "Obtain Infoach",
+      "location": "Ahmadabad Lahore",
+      "logo": "/letter-i.png",
+      "dateRange": "Feb 2020-Dec 2022",
+      "role": "Web Developer",
+      "highlights": [
+        "Designed numerous12 responsive themes using HTML/CSS and ReactJS.",
+        "Successfully integrated REST APIs to enhance functionality and user experience.",
+        "Worked with PHP and MySQL, handling CRUD operations for effective data management."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Portfolio Made With",
+  "techStack": [
+    { "label": "NextJS", "icon": "/download (4) 1.png", "widthPx": 30 },
+    { "label": "ReactJs", "icon": "/react 1.png", "widthPx": 30 },
+    { "label": "GraphQl", "icon": "/download (3) 1.png", "widthPx": 40 },
+    { "label": "Tailwind CSS", "icon": "/download (2) 1.png", "widthPx": 30 },
+    { "label": "JavaScript", "icon": "/js 3.png", "widthPx": 20 },
+    { "label": "Figma", "icon": "/figma 1.png", "widthPx": 30 }
+  ],
+  "footer": {
+    "profileImage": "/SA.png",
+    "profileWidthPx": 30,
+    "firstName": "Shahbaz",
+    "lastName": "Ali",
+    "designText": "Designed & Build by",
+    "designerName": "SHAHBAZ ALI"
+  }
+}

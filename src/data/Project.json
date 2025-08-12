@@ -1,0 +1,94 @@
+{
+  "title": "Projects I've \nWorked on",
+  "cta": {
+    "label": "See Github",
+    "icon": "/Frame (3).png",
+    "href": "#"
+  },
+  "projects": [
+    {
+      "name": "CricTraker",
+      "rowClass": "bg-color-all-container",
+      "leftBoxClass": "backgroudColor-Change",
+      "workedOn": ["Website", "Admin Panel"],
+      "tech": [
+        { "label": "Gitlab", "icon": "/download (25) 1.png" },
+        { "label": "Github", "icon": "/download (26) 1.png" },
+        { "label": "Notion", "icon": "/download (27) 1.png" },
+        { "label": "Postman", "icon": "/download (28) 1.png" },
+        { "label": "Framer Motion", "icon": "/download (20) 1.png" },
+        { "label": "React Query", "icon": "/download (21) 1.png" },
+        { "label": "Apollo GraphQL", "icon": "/download (19) 1.png" },
+        { "label": "Styled Components", "icon": "/download (13) 1.png" },
+        { "label": "Booststarp", "icon": "/download (11) 1.png" },
+        { "label": "HTML5", "icon": "/download (7) 1.png" },
+        { "label": "CSS2", "icon": "/download (8) 1.png" },
+        { "label": "JavaScript", "icon": "/js 2.png" },
+        { "label": "JQuery", "icon": "/download (9) 1.png" },
+        { "label": "SCSS", "icon": "/download (10) 1.png" }
+      ],
+      "action": {
+        "label": "Go to CricTracker",
+        "icon": "/Frame (2).png",
+        "href": "#"
+      },
+      "badge": { "icon": "/letter-i.png" }
+    },
+    {
+      "name": "SportsBuzz",
+      "rowClass": "bg-color-all-container-mahroon",
+      "leftBoxClass": "backgroudColor-Change-lightMahroon",
+      "workedOn": ["Website", "Admin Panel"],
+      "tech": [
+        { "label": "Gitlab", "icon": "/download (25) 1.png" },
+        { "label": "Github", "icon": "/download (26) 1.png" },
+        { "label": "Notion", "icon": "/download (27) 1.png" },
+        { "label": "Postman", "icon": "/download (28) 1.png" },
+        { "label": "Framer Motion", "icon": "/download (20) 1.png" },
+        { "label": "React Query", "icon": "/download (21) 1.png" },
+        { "label": "Apollo GraphQL", "icon": "/download (19) 1.png" },
+        { "label": "Styled Components", "icon": "/download (13) 1.png" },
+        { "label": "Booststarp", "icon": "/download (11) 1.png" },
+        { "label": "HTML5", "icon": "/download (7) 1.png" },
+        { "label": "CSS2", "icon": "/download (8) 1.png" },
+        { "label": "JavaScript", "icon": "/js 2.png" },
+        { "label": "JQuery", "icon": "/download (9) 1.png" },
+        { "label": "SCSS", "icon": "/download (10) 1.png" }
+      ],
+      "action": {
+        "label": "Go to SportsBuzz",
+        "icon": "/Frame (2).png",
+        "href": "#"
+      },
+      "badge": { "icon": "/letter-i.png" }
+    },
+    {
+      "name": "Epiko Market",
+      "rowClass": "bg-color-all-container-mahroon-Two",
+      "leftBoxClass": "backgroudColor-Change-lightMahroon-Two",
+      "workedOn": ["Website", "Admin Panel"],
+      "tech": [
+        { "label": "Gitlab", "icon": "/download (25) 1.png" },
+        { "label": "Github", "icon": "/download (26) 1.png" },
+        { "label": "Notion", "icon": "/download (27) 1.png" },
+        { "label": "Postman", "icon": "/download (28) 1.png" },
+        { "label": "Framer Motion", "icon": "/download (20) 1.png" },
+        { "label": "React Query", "icon": "/download (21) 1.png" },
+        { "label": "Apollo GraphQL", "icon": "/download (19) 1.png" },
+        { "label": "Styled Components", "icon": "/download (13) 1.png" },
+        { "label": "Booststarp", "icon": "/download (11) 1.png" },
+        { "label": "HTML5", "icon": "/download (7) 1.png" },
+        { "label": "CSS2", "icon": "/download (8) 1.png" },
+        { "label": "JavaScript", "icon": "/js 2.png" },
+        { "label": "JQuery", "icon": "/download (9) 1.png" },
+        { "label": "SCSS", "icon": "/download (10) 1.png" }
+      ],
+      "action": {
+        "label": "Go to Epiko Market",
+        "icon": "/Frame (2).png",
+        "href": "#"
+      },
+      "badge": { "icon": "/letter-i.png" }
+    }
+  ]
+}

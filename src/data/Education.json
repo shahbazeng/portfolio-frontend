@@ -1,0 +1,29 @@
+{
+  "title": "Education",
+  "icons": {
+    "calendar": "/Frame.png",
+    "cap": "/education 1.png",
+    "university": "/Group.png",
+    "location": "/Vector.png"
+  },
+  "items": [
+    {
+      "years": "2017-2020",
+      "stage": "Graduation",
+      "degree": "Bachelor's Degree",
+      "short": "BCA",
+      "program": "Bachelor of Computer Applications",
+      "university": "Veer Narmad South Gujarat University",
+      "location": "Surat, Gujarat, India"
+    },
+    {
+      "years": "2020-2022",
+      "stage": "Post Graduation",
+      "degree": "Master's Degree",
+      "short": "MCA",
+      "program": "Master of Computer Applications",
+      "university": "Parul University",
+      "location": "Vadodara, Gujarat, India"
+    }
+  ]
+}

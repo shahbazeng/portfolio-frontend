@@ -1,0 +1,52 @@
+{
+  "title": "Skill",
+  "design": {
+    "title": "Design Tool I Use",
+    "tools": [
+      { "label": "Adobe XD", "icon": "/download (19) 2.png" },
+      { "label": "Figma", "icon": "/figma 3.png" }
+    ]
+  },
+  "tech": {
+    "title": "Technologies I Use",
+    "tools": [
+      { "label": "HTML5", "icon": "/download (7) 1.png" },
+      { "label": "CSS2", "icon": "/download (8) 1.png" },
+      { "label": "JavaScript", "icon": "/js 2.png" },
+      { "label": "JQuery", "icon": "/download (9) 1.png" },
+      { "label": "SCSS", "icon": "/download (10) 1.png" },
+      { "label": "ReactJS", "icon": "/react 2.png" },
+      { "label": "Redux", "icon": "/download (12) 2.png" },
+      { "label": "Firebase", "icon": "/download (13) 2.png" },
+      { "label": "AMP", "icon": "/download (14) 1.png" },
+      { "label": "React Hook Form", "icon": "/download (15) 1.png" },
+      { "label": "Material UI", "icon": "/download (16) 1.png" },
+      { "label": "Tailwind CSS", "icon": "/download (2) 1.png" },
+      { "label": "Chakra UI", "icon": "/download (17) 1.png" },
+      { "label": "Semantic UI", "icon": "/download (18) 1.png" },
+      { "label": "Ant Design", "icon": "/download (12) 1.png" },
+      { "label": "GrapQL", "icon": "/download (3) 2.png" },
+      { "label": "Git", "icon": "/download (22) 2.png" },
+      { "label": "Framer Motion", "icon": "/download (20) 1.png" },
+      { "label": "React Query", "icon": "/download (21) 1.png" },
+      { "label": "Apollo GraphQL", "icon": "/download (19) 1.png" },
+      { "label": "Styled Components", "icon": "/download (13) 1.png" },
+      { "label": "Booststarp", "icon": "/download (11) 1.png" }
+    ]
+  },
+  "devProd": {
+    "titleLine1": "DEVELOPMENT & PRODUCTIVITY",
+    "titleLine2": "TOOLS I USE",
+    "tools": [
+      { "label": "Visual Studio Code", "icon": "/download (14) 2.png" },
+      { "label": "Gitlab", "icon": "/download (25) 1.png" },
+      { "label": "Github", "icon": "/download (26) 1.png" },
+      { "label": "Notion", "icon": "/download (27) 1.png" },
+      { "label": "Postman", "icon": "/download (28) 1.png" }
+    ]
+  },
+  "resume": {
+    "label": "Resume",
+    "file": "./canvashabir1.pdf"
+  }
+}

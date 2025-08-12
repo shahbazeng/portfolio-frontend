@@ -1,0 +1,32 @@
+{
+  "brand": {
+    "logo": { "src": "/NJ.png", "alt": "nj.png", "className": "img" },
+    "wrapperClass": "bg-dark borderradius"
+  },
+  "user": {
+    "firstName": "Shahbaz",
+    "lastName": "Ali",
+    "profileHref": "#"
+  },
+  "menu": {
+    "label": "menu",
+    "menuHref": "#",
+    "iconWrapperClass": "backgroundYellow",
+    "burgerIconSize": 25
+  },
+  "toggleLinkHref": "/",
+  "classes": {
+    "light": {
+      "navbar": "bg-light  borderRounded p-0",
+      "variant": "light",
+      "moonSunWrapper": "backgroundColor-radius-one",
+      "menuText": "color-dark"
+    },
+    "dark": {
+      "navbar": "borderRounded bg-dark",
+      "variant": "dark",
+      "moonSunWrapper": "backgroundColor-radius-one-dark",
+      "menuText": "color-dark-light"
+    }
+  }
+}
