@@ -42,7 +42,7 @@
     }
   ],
   "bannerImage": {
-    "src": "/banner_img.png",
+    "src": "/portfolioImg.png",
     "alt": "banner-img",
     "style": {
       "width": "850px",

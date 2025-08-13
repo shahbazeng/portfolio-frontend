@@ -159,7 +159,7 @@ function BannerCode() {
           <div className="posrel">
             <div className="positionZindex">
               <img
-                src="/banner_img.png"
+                src="/portfolioImg.png"
                 alt="banner-img"
                 className="img-fluid manage-Img"
               />

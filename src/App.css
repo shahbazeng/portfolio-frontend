@@ -200,6 +200,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 500px 500px 0 0;
+  border: 9px solid white !important;
+  border-bottom: none !important;
 }
 
 .posrel {
@@ -213,12 +215,12 @@
   border-top-left-radius: 50%; */
 }
 .manage-Img {
-  width: 850px;
+  width: 450px;
 }
 .positionZindex {
   position: absolute;
   z-index: 999;
-  top: 50%;
+  top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -246,35 +248,35 @@
 .nextjsButton {
   position: absolute;
   top: 22%;
-  left: 10%;
+  left: 18%;
 }
 .nextjsButtonTwo {
   position: absolute;
   top: 49%;
-  left: 5%;
+  left: 16%;
   z-index: 999;
 }
 .nextjsButtonThree {
   position: absolute;
   top: 80%;
-  left: 3%;
+  left: 14%;
   z-index: 999;
 }
 .nextjsButtonFour {
   position: absolute;
   top: 22%;
-  right: 10%;
+  right: 12%;
 }
 .nextjsButtonFive {
   position: absolute;
   top: 46%;
-  right: 5%;
+  right: 12%;
   z-index: 999;
 }
 .nextjsButtonSix {
   position: absolute;
   top: 80%;
-  right: 3%;
+  right: 12%;
   z-index: 999;
 }
 .second-conatiner {
@@ -1587,5 +1589,3 @@
   gap: 8px 12px; /* row gap 8px, column gap 12px */
   justify-content: start; /* center horizontally */
 }
-
-
