@@ -1,11 +1,630 @@
-import React, { useContext, useState } from "react";
+// import React, { useContext, useState } from "react";
+// import ParticleField from "./ParticleField";
+
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container, Row, Col, Card, Form } from "react-bootstrap";
+// import { MdOutlineFileDownload } from "react-icons/md";
+// import { RxCross2 } from "react-icons/rx";
+// import axios from "axios";
+// import bannerData from "./data/Banner.json";
+
+// function BannerCode() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [mobile, setMobile] = useState("");
+//   const [subject, setSubject] = useState("");
+//   const [message, setMessage] = useState("");
+//   const [err, setErr] = useState(false);
+//   const [emailError, setEmailError] = useState("");
+//   const [mobileError, setMobileError] = useState("");
+//   const [open_close, setOpen_Close] = useState(false);
+
+//   const { toggle } = useContext(MyContext);
+//   const classNames = ["One", "Two", "Three", "Four", "Five", "Six"];
+
+//   // 🔹 Real-time email validation
+//   const handleEmailChange = (value) => {
+//     setEmail(value);
+//     if (value && !value.includes("@")) {
+//       setEmailError("Please enter a valid email with '@'");
+//     } else {
+//       setEmailError("");
+//     }
+//   };
+
+//   // 🔹 Real-time mobile validation
+//   const handleMobileChange = (value) => {
+//     setMobile(value);
+//     if (value && !/^\d+$/.test(value)) {
+//       setMobileError("Mobile number must contain only digits");
+//     } else {
+//       setMobileError("");
+//     }
+//   };
+
+//   const validateFields = () => {
+//     let valid = true;
+//     setErr(false);
+
+//     if (!name || !email || !mobile || !subject || !message) {
+//       setErr(true);
+//       valid = false;
+//     }
+
+//     if (email && !email.includes("@")) {
+//       setEmailError("Please enter a valid email with '@'");
+//       valid = false;
+//     }
+
+//     if (mobile && !/^\d+$/.test(mobile)) {
+//       setMobileError("Mobile number must contain only digits");
+//       valid = false;
+//     }
+
+//     return valid;
+//   };
+
+//   const submitHandler = async () => {
+//     if (!validateFields()) return;
+
+//     try {
+//       const response = await axios.post("http://localhost:5000/signup", {
+//         name,
+//         email,
+//         mobile,
+//         subject,
+//         message,
+//       });
+
+//       if (response.status === 200) {
+//         console.log(response.data, "data submitted successfully");
+//         // Reset form
+//         setName("");
+//         setEmail("");
+//         setMobile("");
+//         setSubject("");
+//         setMessage("");
+//       }
+//     } catch (error) {
+//       console.log("data submitted rejected", error);
+//     }
+//   };
+
+//   const hireSetup = () => {
+//     setOpen_Close(true);
+//   };
+//   const togglecloseIcon = () => {
+//     setOpen_Close(false);
+//   };
+//   const positionClasses = [
+//     "nextjsButton", // 0 => NextJS
+//     "nextjsButtonTwo", // 1 => ReactJs
+//     "nextjsButtonThree", // 2 => GraphQl
+//     "nextjsButtonFour", // 3 => Tailwind CSS
+//     "nextjsButtonFive", // 4 => JavaScript
+//     "nextjsButtonSix", // 5 => Figma
+//   ];
+
+//   return toggle ? (
+//     <>
+//       {/* <div style={{ position: "relative", zIndex: 1 }}> */}
+//       <div className="hero">
+//         <ParticleField
+//           dotColor="rgba(255,255,255,0.9)" // static dots color
+//           lineColor="rgba(255,255,255,0.45)" // hover line color
+//           density={0.001} // stars count
+//           linkRadius={150}
+//           fadeOutMs={600}
+//         />
+//         <Container>
+//           {/* <div className="textLight">
+//             Hello! I'm <span className="change-color">Shahbaz Ali</span>
+//           </div>
+//           <div className="fontweight">A Front End Developer | Web Designer</div>
+//           <div className="textbtncenter">
+//             with
+//             <button>3.9 + year</button>
+//             Experiance
+//           </div>
+//           <div className="textCenterWithButton">
+//             <a
+//               href="./canvashabir1.pdf"
+//               download
+//               className="btn-one"
+//               style={{ textDecoration: "none" }}
+//             >
+//               <MdOutlineFileDownload className="svgIcon" /> Resume
+//             </a>
+//             <button className="btn-two" onClick={() => hireSetup()}>
+//               Hire Me
+//             </button>
+//           </div> */}
+//           <div className="textLight">
+//             {bannerData.intro.greeting}{" "}
+//             <span className="change-color">{bannerData.intro.name}</span>
+//           </div>
+//           <div className="fontweight">{bannerData.intro.title}</div>
+//           <div className="textbtncenter">
+//             with
+//             <button>{bannerData.intro.experience}</button>
+//             Experience
+//           </div>
+
+//           <div className="textCenterWithButton">
+//             <a
+//               href={bannerData.buttons.resume.file}
+//               download
+//               className="btn-one"
+//               style={{ textDecoration: "none" }}
+//             >
+//               <MdOutlineFileDownload className="svgIcon" />{" "}
+//               {bannerData.buttons.resume.label}
+//             </a>
+//             <button className="btn-two" onClick={() => hireSetup()}>
+//               {bannerData.buttons.hire.label}
+//             </button>
+//           </div>
+
+//           <div className="posrel">
+//             <div className="positionZindex">
+//               <img
+//                 src="/portfolioImg.png"
+//                 alt="banner-img"
+//                 className="img-fluid manage-Img"
+//               />
+//             </div>
+
+//             <div className="backgroundColor"></div>
+//             {/* <div className="nextjsButton">
+//               <button className="fontSize">
+//                 <img src="/download (4) 1.png" className="images" /> NextJS
+//               </button>
+//             </div>
+//             <div className="nextjsButtonTwo">
+//               <button className="fontSize">
+//                 <img src="/react 1.png" className="images" /> ReactJs
+//               </button>
+//             </div>
+//             <div className="nextjsButtonThree">
+//               <button className="fontSize">
+//                 <img src="/download (3) 1.png" className="images" /> GraphQl
+//               </button>
+//             </div>
+//             <div className="nextjsButtonFour">
+//               <button className="fontSize">
+//                 <img src="/download (2) 1.png" className="images" /> Tailwind
+//                 CSS
+//               </button>
+//             </div>
+//             <div className="nextjsButtonFive">
+//               <button className="fontSize">
+//                 <img src="/js 3.png" className="images" /> JavaScript
+//               </button>
+//             </div>
+//             <div className="nextjsButtonSix">
+//               <button className="fontSize">
+//                 <img src="/figma 1.png" className="images" /> Figma
+//               </button>
+//             </div> */}
+//             {bannerData.technologies.slice(0, 6).map((tech, index) => (
+//               <div key={tech.name} className={positionClasses[index]}>
+//                 <button className="fontSize">
+//                   <img src={tech.icon} className="images" alt={tech.name} />{" "}
+//                   {tech.name}
+//                 </button>
+//               </div>
+//             ))}
+//           </div>
+//         </Container>
+// {open_close ? (
+//   <div className="overlay-section">
+//     <div className="form-popup">
+//       <RxCross2
+//         className="popup-module-close"
+//         onClick={togglecloseIcon}
+//       />
+//       <Container className="bg-white p-5">
+//         <Row className="mt-3 mb-3">
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (4).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Full Name*"
+//                 className="BorderNone"
+//                 value={name}
+//                 onChange={(e) => setName(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !name && (
+//               <div className="text-danger">Name is required</div>
+//             )}
+//           </Col>
+
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (5).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Email*"
+//                 className="BorderNone"
+//                 value={email}
+//                 onChange={(e) => handleEmailChange(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !email && (
+//               <div className="text-danger">Email is required</div>
+//             )}
+//             {emailError && (
+//               <div className="text-danger">{emailError}</div>
+//             )}
+//           </Col>
+//         </Row>
+
+//         <Row className="mt-2 mb-3">
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (6).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Mobile No."
+//                 className="BorderNone"
+//                 value={mobile}
+//                 onChange={(e) => handleMobileChange(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !mobile && (
+//               <div className="text-danger">Mobile is required</div>
+//             )}
+//             {mobileError && (
+//               <div className="text-danger">{mobileError}</div>
+//             )}
+//           </Col>
+
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Subject*"
+//                 className="BorderNone-one"
+//                 value={subject}
+//                 onChange={(e) => setSubject(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !subject && (
+//               <div className="text-danger">Subject is required</div>
+//             )}
+//           </Col>
+//         </Row>
+
+//         <Row>
+//           <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//             <textarea
+//               placeholder="Message*"
+//               className="BorderNone-one height-width-setup"
+//               value={message}
+//               onChange={(e) => setMessage(e.target.value)}
+//             ></textarea>
+//           </Form.Group>
+//           {err && !message && (
+//             <div className="text-danger">Message is required</div>
+//           )}
+
+//           <div>
+//             <button
+//               className="imageAndtextButton-one"
+//               onClick={submitHandler}
+//             >
+//               Send{" "}
+//               <img
+//                 src="/Livello_2 (1).png"
+//                 alt="livello"
+//                 className="inner-image-button-one"
+//               />
+//             </button>
+//           </div>
+//         </Row>
+//       </Container>
+//     </div>
+//   </div>
+// ) : (
+//   ""
+// )}
+//       </div>
+//     </>
+//   ) : (
+//     <>
+//       <div style={{ position: "relative", zIndex: 1 }}>
+//         {/* <Container>
+//           <div className="textLight-dark">
+//             Hello! I'm <span className="change-color">Shahbaz Ali</span>
+//           </div>
+//           <div className="fontweight-dark">
+//             A Front End Developer | Web Designer
+//           </div>
+//           <div className="textbtncenter-dark">
+//             with
+//             <button>3.9 + year</button>
+//             Experiance
+//           </div>
+//           <div className="textCenterWithButton">
+//             <a
+//               href="./canvashabir1.pdf"
+//               download
+//               className="btn-one"
+//               style={{ textDecoration: "none" }}
+//             >
+//               <MdOutlineFileDownload className="svgIcon" /> Resume
+//             </a>
+//             <button className="btn-two" onClick={() => hireSetup()}>
+//               Hire Me
+//             </button>
+//           </div>
+//           <div className="posrel">
+//             <div className="positionZindex">
+//               <img
+//                 src="/banner_img.png"
+//                 alt="banner-img"
+//                 style={{ width: "850px", height: "auto" }}
+//                 className="img-fluid"
+//               />
+//             </div>
+
+//             <div className="backgroundColor"></div>
+//             <div className="nextjsButton">
+//               <button className="fontSize-dark">
+//                 <img src="/download (4) 1.png" className="images" /> NextJS
+//               </button>
+//             </div>
+//             <div className="nextjsButtonTwo">
+//               <button className="fontSize-dark">
+//                 <img src="/react 1.png" className="images" /> ReactJs
+//               </button>
+//             </div>
+//             <div className="nextjsButtonThree">
+//               <button className="fontSize-dark">
+//                 <img src="/download (3) 1.png" className="images" /> GraphQl
+//               </button>
+//             </div>
+//             <div className="nextjsButtonFour">
+//               <button className="fontSize-dark">
+//                 <img src="/download (2) 1.png" className="images" /> Tailwind
+//                 CSS
+//               </button>
+//             </div>
+//             <div className="nextjsButtonFive">
+//               <button className="fontSize-dark">
+//                 <img src="/js 3.png" className="images" /> JavaScript
+//               </button>
+//             </div>
+//             <div className="nextjsButtonSix">
+//               <button className="fontSize-dark">
+//                 <img src="/figma 1.png" className="images" /> Figma
+//               </button>
+//             </div>
+//           </div>
+//         </Container> */}
+//         <Container>
+//           {/* intro (dark) — JSON se */}
+//           <div className="textLight-dark">
+//             {bannerData.intro.greeting}{" "}
+//             <span className="change-color">{bannerData.intro.name}</span>
+//           </div>
+//           <div className="fontweight-dark">{bannerData.intro.title}</div>
+//           <div className="textbtncenter-dark">
+//             with
+//             <button>{bannerData.intro.experience}</button>
+//             Experience
+//           </div>
+
+//           {/* buttons (dark) — JSON se */}
+//           <div className="textCenterWithButton">
+//             <a
+//               href={bannerData.buttons.resume.file}
+//               download
+//               className="btn-one"
+//               style={{ textDecoration: "none" }}
+//             >
+//               <MdOutlineFileDownload className="svgIcon" />{" "}
+//               {bannerData.buttons.resume.label}
+//             </a>
+//             <button className="btn-two" onClick={hireSetup}>
+//               {bannerData.buttons.hire.label}
+//             </button>
+//           </div>
+
+//           <div className="posrel">
+//             <div className="positionZindex">
+//               <img
+//                 src={bannerData.bannerImage.src}
+//                 alt={bannerData.bannerImage.alt}
+//                 className="img-fluid"
+//                 style={bannerData.bannerImage.style}
+//               />
+//             </div>
+
+//             <div className="backgroundColor"></div>
+
+//             {/* tech badges (dark) — dynamic */}
+//             {bannerData.technologies.slice(0, 6).map((tech, index) => (
+//               <div key={tech.name} className={positionClasses[index]}>
+//                 <button className="fontSize-dark">
+//                   <img src={tech.icon} className="images" alt={tech.name} />{" "}
+//                   {tech.name}
+//                 </button>
+//               </div>
+//             ))}
+//           </div>
+//         </Container>
+//         {open_close ? (
+//           <div className="overlay-section">
+//             <div className="form-popup">
+//               <RxCross2
+//                 className="popup-module-close"
+//                 onClick={togglecloseIcon}
+//               />
+//               <Container className="bg-white p-5">
+//                 <Row className="mt-3 mb-3">
+//                   <Col xs={12} sm={6}>
+//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//                       <div className="backgroundColorDifferent">
+//                         <img
+//                           src="/Frame (4).png"
+//                           alt="user-profile"
+//                           style={{ width: "20px" }}
+//                         />
+//                       </div>
+//                       <Form.Control
+//                         type="text"
+//                         placeholder="Full Name*"
+//                         className="BorderNone"
+//                         value={name}
+//                         onChange={(e) => setName(e.target.value)}
+//                       />
+//                     </Form.Group>
+//                     {err && !name && (
+//                       <div className="text-danger">Name is required</div>
+//                     )}
+//                   </Col>
+
+//                   <Col xs={12} sm={6}>
+//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//                       <div className="backgroundColorDifferent">
+//                         <img
+//                           src="/Frame (5).png"
+//                           alt="user-profile"
+//                           style={{ width: "20px" }}
+//                         />
+//                       </div>
+//                       <Form.Control
+//                         type="text"
+//                         placeholder="Email*"
+//                         className="BorderNone"
+//                         value={email}
+//                         onChange={(e) => handleEmailChange(e.target.value)}
+//                       />
+//                     </Form.Group>
+//                     {err && !email && (
+//                       <div className="text-danger">Email is required</div>
+//                     )}
+//                     {emailError && (
+//                       <div className="text-danger">{emailError}</div>
+//                     )}
+//                   </Col>
+//                 </Row>
+
+//                 <Row className="mt-2 mb-3">
+//                   <Col xs={12} sm={6}>
+//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//                       <div className="backgroundColorDifferent">
+//                         <img
+//                           src="/Frame (6).png"
+//                           alt="user-profile"
+//                           style={{ width: "20px" }}
+//                         />
+//                       </div>
+//                       <Form.Control
+//                         type="text"
+//                         placeholder="Mobile No."
+//                         className="BorderNone"
+//                         value={mobile}
+//                         onChange={(e) => handleMobileChange(e.target.value)}
+//                       />
+//                     </Form.Group>
+//                     {err && !mobile && (
+//                       <div className="text-danger">Mobile is required</div>
+//                     )}
+//                     {mobileError && (
+//                       <div className="text-danger">{mobileError}</div>
+//                     )}
+//                   </Col>
+
+//                   <Col xs={12} sm={6}>
+//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//                       <Form.Control
+//                         type="text"
+//                         placeholder="Subject*"
+//                         className="BorderNone-one"
+//                         value={subject}
+//                         onChange={(e) => setSubject(e.target.value)}
+//                       />
+//                     </Form.Group>
+//                     {err && !subject && (
+//                       <div className="text-danger">Subject is required</div>
+//                     )}
+//                   </Col>
+//                 </Row>
+
+//                 <Row>
+//                   <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//                     <textarea
+//                       placeholder="Message*"
+//                       className="BorderNone-one height-width-setup"
+//                       value={message}
+//                       onChange={(e) => setMessage(e.target.value)}
+//                     ></textarea>
+//                   </Form.Group>
+//                   {err && !message && (
+//                     <div className="text-danger">Message is required</div>
+//                   )}
+
+//                   <div>
+//                     <button
+//                       className="imageAndtextButton-one"
+//                       onClick={submitHandler}
+//                     >
+//                       Send
+//                       <img
+//                         src="/Livello_2 (1).png"
+//                         alt="livello"
+//                         className="inner-image-button-one"
+//                       />
+//                     </button>
+//                   </div>
+//                 </Row>
+//               </Container>
+//             </div>
+//           </div>
+//         ) : (
+//           ""
+//         )}
+//       </div>
+//     </>
+//   );
+// }
+// export default BannerCode;
+
+// ------------------------------------------------------------------------------------------------------------------------------------------
+
+import React, { useContext, useState, useEffect } from "react";
+import ParticleField from "./ParticleField";
 import "./App.css";
 import { MyContext } from "./MyContext";
-import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
 import bannerData from "./data/Banner.json";
+import { motion, AnimatePresence } from "framer-motion";
 
 function BannerCode() {
   const [name, setName] = useState("");
@@ -17,9 +636,136 @@ function BannerCode() {
   const [emailError, setEmailError] = useState("");
   const [mobileError, setMobileError] = useState("");
   const [open_close, setOpen_Close] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [displayGreeting, setDisplayGreeting] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const fullGreeting = `${bannerData.intro.greeting} ${bannerData.intro.name}`;
+
+  useEffect(() => {
+    let timer;
+
+    const handleTyping = () => {
+      setDisplayGreeting(
+        isDeleting
+          ? fullGreeting.substring(0, displayGreeting.length - 1)
+          : fullGreeting.substring(0, displayGreeting.length + 1)
+      );
+
+      if (!isDeleting && displayGreeting === fullGreeting) {
+        // Done typing, wait then start deleting
+        setTypingSpeed(1000); // pause at full text
+        setTimeout(() => {
+          setIsDeleting(true);
+          setTypingSpeed(50); // faster erase
+        }, 2000);
+      } else if (isDeleting && displayGreeting === "") {
+        // Done deleting, wait then start typing again
+        setIsDeleting(false);
+        setTypingSpeed(500); // pause when empty
+        setTimeout(() => setTypingSpeed(150), 1000);
+      }
+    };
+
+    timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayGreeting, isDeleting, typingSpeed, fullGreeting]);
+
+  // Split the displayed text to highlight the name
+  const renderGreeting = () => {
+    const greetingPart = bannerData.intro.greeting;
+    const namePart = bannerData.intro.name;
+
+    if (displayGreeting.length <= greetingPart.length) {
+      return (
+        <>
+          {displayGreeting}
+          <span className="change-color">|</span>
+        </>
+      );
+    } else {
+      return (
+        <>
+          {greetingPart}{" "}
+          <span className="change-color">
+            {displayGreeting.substring(greetingPart.length + 1)}
+            {!isDeleting && displayGreeting.length < fullGreeting.length && "|"}
+          </span>
+        </>
+      );
+    }
+  };
 
   const { toggle } = useContext(MyContext);
-  const classNames = ["One", "Two", "Three", "Four", "Five", "Six"];
+  const positionClasses = [
+    "nextjsButton", // 0 => NextJS
+    "nextjsButtonTwo", // 1 => ReactJs
+    "nextjsButtonThree", // 2 => GraphQl
+    "nextjsButtonFour", // 3 => Tailwind CSS
+    "nextjsButtonFive", // 4 => JavaScript
+    "nextjsButtonSix", // 5 => Figma
+  ];
+
+  useEffect(() => {
+    // Trigger animations after component mounts
+    setIsVisible(true);
+  }, []);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        delay: 0.5,
+      },
+    },
+  };
+
+  const techBadgeVariants = {
+    hidden: { y: -50, opacity: 0 },
+    visible: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.1 + 0.8,
+        type: "spring",
+        stiffness: 100,
+      },
+    }),
+    hover: {
+      y: -10,
+      transition: { type: "spring", stiffness: 300 },
+    },
+  };
 
   // 🔹 Real-time email validation
   const handleEmailChange = (value) => {
@@ -92,69 +838,71 @@ function BannerCode() {
   const hireSetup = () => {
     setOpen_Close(true);
   };
+
   const togglecloseIcon = () => {
     setOpen_Close(false);
   };
-  const positionClasses = [
-    "nextjsButton", // 0 => NextJS
-    "nextjsButtonTwo", // 1 => ReactJs
-    "nextjsButtonThree", // 2 => GraphQl
-    "nextjsButtonFour", // 3 => Tailwind CSS
-    "nextjsButtonFive", // 4 => JavaScript
-    "nextjsButtonSix", // 5 => Figma
-  ];
 
   return toggle ? (
     <>
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div className="hero">
+        <ParticleField
+          dotColor="rgba(255,255,255,0.9)"
+          lineColor="rgba(255,255,255,0.45)"
+          density={0.001}
+          linkRadius={150}
+          fadeOutMs={600}
+        />
         <Container>
-          {/* <div className="textLight">
-            Hello! I'm <span className="change-color">Shahbaz Ali</span>
-          </div>
-          <div className="fontweight">A Front End Developer | Web Designer</div>
-          <div className="textbtncenter">
-            with
-            <button>3.9 + year</button>
-            Experiance
-          </div>
-          <div className="textCenterWithButton">
-            <a
-              href="./canvashabir1.pdf"
-              download
-              className="btn-one"
-              style={{ textDecoration: "none" }}
-            >
-              <MdOutlineFileDownload className="svgIcon" /> Resume
-            </a>
-            <button className="btn-two" onClick={() => hireSetup()}>
-              Hire Me
-            </button>
-          </div> */}
-          <div className="textLight">
-            {bannerData.intro.greeting}{" "}
-            <span className="change-color">{bannerData.intro.name}</span>
-          </div>
-          <div className="fontweight">{bannerData.intro.title}</div>
-          <div className="textbtncenter">
-            with
-            <button>{bannerData.intro.experience}</button>
-            Experience
-          </div>
+          <motion.div
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            variants={containerVariants}
+          >
+            <motion.div variants={textVariants} className="textLight">
+              {renderGreeting()}
+            </motion.div>
 
-          <div className="textCenterWithButton">
-            <a
-              href={bannerData.buttons.resume.file}
-              download
-              className="btn-one"
-              style={{ textDecoration: "none" }}
+            <motion.div variants={textVariants} className="fontweight">
+              {bannerData.intro.title}
+            </motion.div>
+
+            <motion.div variants={textVariants} className="textbtncenter">
+              with
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {bannerData.intro.experience}
+              </motion.button>
+              Experience
+            </motion.div>
+
+            <motion.div
+              variants={textVariants}
+              className="textCenterWithButton"
             >
-              <MdOutlineFileDownload className="svgIcon" />{" "}
-              {bannerData.buttons.resume.label}
-            </a>
-            <button className="btn-two" onClick={() => hireSetup()}>
-              {bannerData.buttons.hire.label}
-            </button>
-          </div>
+              <motion.a
+                href={bannerData.buttons.resume.file}
+                download
+                className="btn-one"
+                style={{ textDecoration: "none" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MdOutlineFileDownload className="svgIcon" />{" "}
+                {bannerData.buttons.resume.label}
+              </motion.a>
+              <motion.button
+                className="btn-two"
+                onClick={() => hireSetup()}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {bannerData.buttons.hire.label}
+              </motion.button>
+            </motion.div>
+          </motion.div>
 
           <div className="posrel">
             <div className="positionZindex">
@@ -166,47 +914,26 @@ function BannerCode() {
             </div>
 
             <div className="backgroundColor"></div>
-            {/* <div className="nextjsButton">
-              <button className="fontSize">
-                <img src="/download (4) 1.png" className="images" /> NextJS
-              </button>
-            </div>
-            <div className="nextjsButtonTwo">
-              <button className="fontSize">
-                <img src="/react 1.png" className="images" /> ReactJs
-              </button>
-            </div>
-            <div className="nextjsButtonThree">
-              <button className="fontSize">
-                <img src="/download (3) 1.png" className="images" /> GraphQl
-              </button>
-            </div>
-            <div className="nextjsButtonFour">
-              <button className="fontSize">
-                <img src="/download (2) 1.png" className="images" /> Tailwind
-                CSS
-              </button>
-            </div>
-            <div className="nextjsButtonFive">
-              <button className="fontSize">
-                <img src="/js 3.png" className="images" /> JavaScript
-              </button>
-            </div>
-            <div className="nextjsButtonSix">
-              <button className="fontSize">
-                <img src="/figma 1.png" className="images" /> Figma
-              </button>
-            </div> */}
+
             {bannerData.technologies.slice(0, 6).map((tech, index) => (
-              <div key={tech.name} className={positionClasses[index]}>
-                <button className="fontSize">
+              <motion.div
+                key={tech.name}
+                className={positionClasses[index]}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={techBadgeVariants}
+                whileHover="hover"
+              >
+                <motion.button className="fontSize">
                   <img src={tech.icon} className="images" alt={tech.name} />{" "}
                   {tech.name}
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             ))}
           </div>
         </Container>
+
         {open_close ? (
           <div className="overlay-section">
             <div className="form-popup">
@@ -344,127 +1071,88 @@ function BannerCode() {
   ) : (
     <>
       <div style={{ position: "relative", zIndex: 1 }}>
-        {/* <Container>
-          <div className="textLight-dark">
-            Hello! I'm <span className="change-color">Shahbaz Ali</span>
-          </div>
-          <div className="fontweight-dark">
-            A Front End Developer | Web Designer
-          </div>
-          <div className="textbtncenter-dark">
-            with
-            <button>3.9 + year</button>
-            Experiance
-          </div>
-          <div className="textCenterWithButton">
-            <a
-              href="./canvashabir1.pdf"
-              download
-              className="btn-one"
-              style={{ textDecoration: "none" }}
-            >
-              <MdOutlineFileDownload className="svgIcon" /> Resume
-            </a>
-            <button className="btn-two" onClick={() => hireSetup()}>
-              Hire Me
-            </button>
-          </div>
-          <div className="posrel">
-            <div className="positionZindex">
-              <img
-                src="/banner_img.png"
-                alt="banner-img"
-                style={{ width: "850px", height: "auto" }}
-                className="img-fluid"
-              />
-            </div>
-
-            <div className="backgroundColor"></div>
-            <div className="nextjsButton">
-              <button className="fontSize-dark">
-                <img src="/download (4) 1.png" className="images" /> NextJS
-              </button>
-            </div>
-            <div className="nextjsButtonTwo">
-              <button className="fontSize-dark">
-                <img src="/react 1.png" className="images" /> ReactJs
-              </button>
-            </div>
-            <div className="nextjsButtonThree">
-              <button className="fontSize-dark">
-                <img src="/download (3) 1.png" className="images" /> GraphQl
-              </button>
-            </div>
-            <div className="nextjsButtonFour">
-              <button className="fontSize-dark">
-                <img src="/download (2) 1.png" className="images" /> Tailwind
-                CSS
-              </button>
-            </div>
-            <div className="nextjsButtonFive">
-              <button className="fontSize-dark">
-                <img src="/js 3.png" className="images" /> JavaScript
-              </button>
-            </div>
-            <div className="nextjsButtonSix">
-              <button className="fontSize-dark">
-                <img src="/figma 1.png" className="images" /> Figma
-              </button>
-            </div>
-          </div>
-        </Container> */}
         <Container>
-          {/* intro (dark) — JSON se */}
-          <div className="textLight-dark">
-            {bannerData.intro.greeting}{" "}
-            <span className="change-color">{bannerData.intro.name}</span>
-          </div>
-          <div className="fontweight-dark">{bannerData.intro.title}</div>
-          <div className="textbtncenter-dark">
-            with
-            <button>{bannerData.intro.experience}</button>
-            Experience
-          </div>
+          <motion.div
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            variants={containerVariants}
+          >
+            <motion.div variants={textVariants} className="textLight-dark">
+              {bannerData.intro.greeting}{" "}
+              <span className="change-color">{bannerData.intro.name}</span>
+            </motion.div>
 
-          {/* buttons (dark) — JSON se */}
-          <div className="textCenterWithButton">
-            <a
-              href={bannerData.buttons.resume.file}
-              download
-              className="btn-one"
-              style={{ textDecoration: "none" }}
+            <motion.div variants={textVariants} className="fontweight-dark">
+              {bannerData.intro.title}
+            </motion.div>
+
+            <motion.div variants={textVariants} className="textbtncenter-dark">
+              with
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {bannerData.intro.experience}
+              </motion.button>
+              Experience
+            </motion.div>
+
+            <motion.div
+              variants={textVariants}
+              className="textCenterWithButton"
             >
-              <MdOutlineFileDownload className="svgIcon" />{" "}
-              {bannerData.buttons.resume.label}
-            </a>
-            <button className="btn-two" onClick={hireSetup}>
-              {bannerData.buttons.hire.label}
-            </button>
-          </div>
+              <motion.a
+                href={bannerData.buttons.resume.file}
+                download
+                className="btn-one"
+                style={{ textDecoration: "none" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MdOutlineFileDownload className="svgIcon" />{" "}
+                {bannerData.buttons.resume.label}
+              </motion.a>
+              <motion.button
+                className="btn-two"
+                onClick={hireSetup}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {bannerData.buttons.hire.label}
+              </motion.button>
+            </motion.div>
+          </motion.div>
 
           <div className="posrel">
             <div className="positionZindex">
               <img
-                src={bannerData.bannerImage.src}
-                alt={bannerData.bannerImage.alt}
-                className="img-fluid"
-                style={bannerData.bannerImage.style}
+                src="/portfolioImg.png"
+                alt="banner-img"
+                className="img-fluid manage-Img"
               />
             </div>
 
             <div className="backgroundColor"></div>
 
-            {/* tech badges (dark) — dynamic */}
             {bannerData.technologies.slice(0, 6).map((tech, index) => (
-              <div key={tech.name} className={positionClasses[index]}>
-                <button className="fontSize-dark">
+              <motion.div
+                key={tech.name}
+                className={positionClasses[index]}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={techBadgeVariants}
+                whileHover="hover"
+              >
+                <motion.button className="fontSize-dark">
                   <img src={tech.icon} className="images" alt={tech.name} />{" "}
                   {tech.name}
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             ))}
           </div>
         </Container>
+
         {open_close ? (
           <div className="overlay-section">
             <div className="form-popup">
@@ -601,4 +1289,5 @@ function BannerCode() {
     </>
   );
 }
+
 export default BannerCode;

@@ -120,6 +120,7 @@
 
 import React, { useContext } from "react";
 import "./App.css";
+import ParticleField from "./ParticleField";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { MdOutlineMenu } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
@@ -134,6 +135,13 @@ function Header() {
 
   return (
     <div>
+      <ParticleField
+        dotColor="rgba(255,255,255,0.9)"
+        lineColor="rgba(255,255,255,0.45)"
+        density={0.001}
+        linkRadius={150}
+        fadeOutMs={600}
+      />
       <Container>
         <Navbar className={cls.navbar} variant={cls.variant} expand="lg">
           <Navbar.Brand className={headerData.brand.wrapperClass}>

@@ -538,6 +538,8 @@
   font-weight: 600;
   margin-top: 15px;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 .bgLightTextBlack {
   background-color: white;
@@ -1560,8 +1562,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1000;
 }
 
 .form-popup {
@@ -1588,4 +1590,586 @@
   grid-template-columns: repeat(2, auto); /* 2 columns, auto width */
   gap: 8px 12px; /* row gap 8px, column gap 12px */
   justify-content: start; /* center horizontally */
+}
+/* ---------------------------------------------------------
+ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* BACK layer: static dots always visible */
+.stars-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* FRONT layer: mouse-only lines */
+.hover-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* content above both */
+
+/* --------------------------------------------------------------------------- */
+/* // CSS (add to your stylesheet) */
+/* Voice dictation animation styles */
+.voice-dictation-animation {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.voice-wave {
+  display: flex;
+  align-items: flex-end;
+  height: 30px;
+}
+
+.typing-text {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  color: #feb20f;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Animation for buttons */
+.buttonsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.fontSizeTwo,
+.fontSizeOne {
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+/* --------------------------------------------------------------------------- */
+/* //education section */
+
+/* Add these to your App.css */
+
+/* Floating animation for education cards */
+.backgroundColorOnCard,
+.backgroundColorOnCard-secondContainer,
+.backgroundColorOnCard-secondContainer-dark {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.floating-icon {
+  z-index: 0;
+}
+
+/* Button hover effects */
+.image-design,
+.image-design-one,
+.image-design-one-secondContainer,
+.degreeButton,
+.degreeButton-secondContainer,
+.BCAbutton,
+.BCAbutton-secondContainer {
+  transition: all 0.3s ease;
+}
+
+/* Card text animation */
+.card-text {
+  transition: all 0.5s ease;
+}
+
+/* Horizontal line animation */
+.horizontaline {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #feb20f, transparent);
+  border: none;
+}
+/* ----------------------------------------------------------------------------------- */
+
+.textLight {
+  min-height: 60px; /* Prevent layout shift when text changes */
+}
+
+.change-color {
+  color: #feb20f; /* Your accent color */
+  position: relative;
+}
+
+.change-color::after {
+  content: "|";
+  position: absolute;
+  right: -5px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.blinking-cursor {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #ff6600;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+/* .experience component */
+
+/* Experience Section Animations */
+/* Experience Section Animations */
+
+.title-underline {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  transform-origin: left;
+}
+
+.bgLightTextBlack,
+.bgLightTextBlack-second-container,
+.bgLightTextBlack-dark {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.clandarButton,
+.clandarButton-second-container {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.horizontaline {
+  height: 2px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  border: none;
+  margin-top: 40px;
+  transform-origin: center;
+}
+
+/* Bullet point styling */
+.dflexTextImage {
+  transition: all 0.3s ease;
+  align-items: flex-start;
+}
+
+.dflexTextImage > div:last-child {
+  margin-left: 10px;
+}
+/* -------------------------------------------------------------------------------------------------------- */
+
+/* Certificate Section Animations */
+.container-space-yaxis > [class*="col-"] {
+  margin-bottom: 20px;
+}
+
+.title-underline {
+  height: 3px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  width: 200px;
+  margin-top: 8px;
+  transform-origin: left;
+}
+
+/* Card hover effects */
+.container-primary,
+.container-primary-dark,
+.container-second {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* View button animation */
+.view-button-primary,
+.view-button-second {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Horizontal line animation */
+.horizontaline {
+  height: 2px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  border: none;
+  margin-top: 40px;
+  transform-origin: center;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+/* skill component */
+
+.tech-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.tech-slider-track {
+  display: flex;
+  width: 100%;
+}
+
+.tech-slide-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  min-width: 100%;
+  padding: 0 20px;
+}
+
+.tech-item {
+  flex: 0 0 calc(14.285% - 10px); /* 7 items per row (100/7 ≈ 14.285) */
+  display: flex;
+  justify-content: center;
+}
+
+.buttonTwoxdandfig {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.3s ease;
+
+  justify-content: center;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .tech-item {
+    flex: 0 0 calc(25% - 10px); /* 4 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-item {
+    flex: 0 0 calc(33.333% - 10px); /* 3 items per row on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-item {
+    flex: 0 0 calc(50% - 10px); /* 2 items per row on small mobile */
+  }
+}
+
+/* --------------------------------------------------------------------------------- */
+/* project component */
+
+/* Animation styles */
+.experience-text-design {
+  position: relative;
+}
+
+.experience-text-design::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  transition: width 0.5s ease;
+}
+
+.motion-div[animate="visible"] .experience-text-design::after {
+  width: 100px;
+}
+
+/* Button animations */
+.buttonOne,
+.buttonTwoxdandfig,
+.buttonTwoxdandfig-One {
+  transition: all 0.3s ease;
+}
+
+.buttonOne:hover,
+.buttonTwoxdandfig:hover,
+.buttonTwoxdandfig-One:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Horizontal line animation */
+.horizontaline {
+  height: 2px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  border: none;
+  margin-top: 40px;
+  transform-origin: center;
+}
+
+/* Project box hover effect */
+.project-box {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.project-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+/* ------------------------------------------------------------------------------ */
+/* Card Component */
+
+/* Animation styles */
+
+.title-underline {
+  height: 3px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  width: 200px;
+  margin-top: 8px;
+  transform-origin: left;
+}
+
+/* Card hover effects */
+.wrapperLight,
+.wrapperDark {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Button animations */
+.buttonOneDesign,
+.ctaClassLight,
+.ctaClassDark {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Horizontal line animation */
+.horizontaline {
+  height: 2px;
+  background: linear-gradient(90deg, #feb20f, #feb20f);
+  border: none;
+  margin-top: 40px;
+  transform-origin: center;
+}
+
+/* Inner div animation */
+.backgroundColor-Black-innerDiv {
+  transition: all 0.5s ease;
+}
+/* ------------------------------------------------------------- */
+/* checkout Component */
+/* Animations */
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+/* -------------------------------------------------------------------------------------------------------- */
+
+/* //contact component */
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleXIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+/* -------------------------------------------------------- */
+/* //formDAta */
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleXIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }

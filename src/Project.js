@@ -549,107 +549,325 @@
 //     )
 // }
 // export default Project;
+// ------------------------------------------------------------------------------------------
+// import React, { useContext } from "react";
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container, Row, Col } from "react-bootstrap";
+// import projectData from "./data/Project.json";
 
-import React, { useContext } from "react";
+// function Project() {
+//   const { toggle } = useContext(MyContext); // kept if you want theme toggles later
+//   const titleLines = projectData.title.split("\n");
+
+//   return (
+//     <Container>
+//       <div>
+//         <div className="experience-text-design mb-5">
+//           {titleLines.map((t, i) => (
+//             <span key={i}>
+//               {t}
+//               {i < titleLines.length - 1 ? <br /> : null}
+//             </span>
+//           ))}
+//         </div>
+
+//         {projectData.projects.map((p, idx) => (
+//           <Row key={p.name} className={`mt-5 mb-3 ${p.rowClass}`}>
+//             <Col xs={12} sm={12} md={6} lg={5} xl={5} xxl={5}>
+//               <div className={p.leftBoxClass}></div>
+//             </Col>
+
+//             <Col xs={12} sm={12} md={6} lg={7} xl={7} xxl={7}>
+//               <div className="div-font-size">{p.name}</div>
+
+//               <div className="small-font-size">Worked on</div>
+
+//               <div className="twobuttonflex">
+//                 {p.workedOn.map((w) => (
+//                   <button key={w} className="buttonOne">
+//                     {w}
+//                   </button>
+//                 ))}
+//               </div>
+
+//               <div className="fz-manage">Technologies I have used</div>
+
+//               <div className="flex-design-in-button">
+//                 {p.tech.map((t) => (
+//                   <button key={t.label} className="buttonTwoxdandfig">
+//                     <img
+//                       src={t.icon}
+//                       alt={`${t.label}-icon`}
+//                       style={{ width: "20px" }}
+//                     />
+//                     {t.label}
+//                   </button>
+//                 ))}
+//               </div>
+
+//               <div>
+//                 {/* <a href={p.action.href} className="buttonTwoxdandfig-One">
+//                   <img
+//                     src={p.action.icon}
+//                     alt="action-icon"
+//                     style={{ width: "20px" }}
+//                   />{" "}
+//                   {p.action.label}
+//                 </a> */}
+//                 <div>
+//                   <button className="buttonTwoxdandfig-One">
+//                     <img
+//                       src="/Frame (2).png"
+//                       alt="html-image"
+//                       style={{ width: "20px" }}
+//                     />
+//                     {p.action.label}
+//                   </button>
+//                   <div className="letter-image-pos-absolu">
+//                     <img
+//                       src="/letter-i.png"
+//                       style={{ width: "30px" }}
+//                       alt="letter-image"
+//                     />
+//                   </div>
+//                 </div>
+//               </div>
+//             </Col>
+//           </Row>
+//         ))}
+
+//         {/* <div className="center-align">
+//           <a href={projectData.cta.href} className="btn-one mt-4 mb-4">
+//             <img
+//               src={projectData.cta.icon}
+//               alt="github"
+//               style={{ width: "20px" }}
+//             />{" "}
+//             {projectData.cta.label}
+//           </a>
+//         </div> */}
+
+//         <hr className="horizontaline" />
+//       </div>
+//     </Container>
+//   );
+// }
+
+// export default Project;
+
+import React, { useContext, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./App.css";
 import { MyContext } from "./MyContext";
 import { Container, Row, Col } from "react-bootstrap";
 import projectData from "./data/Project.json";
 
 function Project() {
-  const { toggle } = useContext(MyContext); // kept if you want theme toggles later
+  const { toggle } = useContext(MyContext);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
   const titleLines = projectData.title.split("\n");
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const projectVariants = (index) => {
+    const directions = [
+      { x: -100, y: 0 }, // from left
+      { x: 100, y: 0 }, // from right
+      { x: 0, y: -50 }, // from top
+      { x: 0, y: 50 }, // from bottom
+    ];
+    const direction = directions[index % directions.length];
+
+    return {
+      hidden: { ...direction, opacity: 0 },
+      visible: {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          stiffness: 80,
+          damping: 10,
+          delay: index * 0.15,
+        },
+      },
+    };
+  };
+
   return (
-    <Container>
-      <div>
-        <div className="experience-text-design mb-5">
+    <Container ref={ref}>
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        {/* Title with animation */}
+        <motion.div
+          className="experience-text-design mb-5"
+          variants={itemVariants}
+        >
           {titleLines.map((t, i) => (
-            <span key={i}>
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.1 }}
+            >
               {t}
               {i < titleLines.length - 1 ? <br /> : null}
-            </span>
+            </motion.span>
           ))}
-        </div>
+        </motion.div>
 
+        {/* Projects */}
         {projectData.projects.map((p, idx) => (
-          <Row key={p.name} className={`mt-5 mb-3 ${p.rowClass}`}>
-            <Col xs={12} sm={12} md={6} lg={5} xl={5} xxl={5}>
-              <div className={p.leftBoxClass}></div>
-            </Col>
+          <motion.div
+            key={p.name}
+            variants={projectVariants(idx)}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <Row className={`mt-5 mb-3 ${p.rowClass}`}>
+              <Col xs={12} sm={12} md={6} lg={5} xl={5} xxl={5}>
+                <motion.div
+                  className={p.leftBoxClass}
+                  whileHover={{ scale: 1.02 }}
+                />
+              </Col>
 
-            <Col xs={12} sm={12} md={6} lg={7} xl={7} xxl={7}>
-              <div className="div-font-size">{p.name}</div>
+              <Col xs={12} sm={12} md={6} lg={7} xl={7} xxl={7}>
+                <motion.div
+                  className="div-font-size"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.2 }}
+                >
+                  {p.name}
+                </motion.div>
 
-              <div className="small-font-size">Worked on</div>
+                <motion.div
+                  className="small-font-size"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.3 }}
+                >
+                  Worked on
+                </motion.div>
 
-              <div className="twobuttonflex">
-                {p.workedOn.map((w) => (
-                  <button key={w} className="buttonOne">
-                    {w}
-                  </button>
-                ))}
-              </div>
+                <motion.div
+                  className="twobuttonflex"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.4 }}
+                >
+                  {p.workedOn.map((w) => (
+                    <motion.button
+                      key={w}
+                      className="buttonOne"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {w}
+                    </motion.button>
+                  ))}
+                </motion.div>
 
-              <div className="fz-manage">Technologies I have used</div>
+                <motion.div
+                  className="fz-manage"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.5 }}
+                >
+                  Technologies I have used
+                </motion.div>
 
-              <div className="flex-design-in-button">
-                {p.tech.map((t) => (
-                  <button key={t.label} className="buttonTwoxdandfig">
-                    <img
-                      src={t.icon}
-                      alt={`${t.label}-icon`}
-                      style={{ width: "20px" }}
-                    />
-                    {t.label}
-                  </button>
-                ))}
-              </div>
+                <motion.div
+                  className="flex-design-in-button"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.6 }}
+                >
+                  {p.tech.map((t) => (
+                    <motion.button
+                      key={t.label}
+                      className="buttonTwoxdandfig"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <img
+                        src={t.icon}
+                        alt={`${t.label}-icon`}
+                        style={{ width: "20px" }}
+                      />
+                      {t.label}
+                    </motion.button>
+                  ))}
+                </motion.div>
 
-              <div>
-                {/* <a href={p.action.href} className="buttonTwoxdandfig-One">
-                  <img
-                    src={p.action.icon}
-                    alt="action-icon"
-                    style={{ width: "20px" }}
-                  />{" "}
-                  {p.action.label}
-                </a> */}
-                <div>
-                  <button className="buttonTwoxdandfig-One">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.7 }}
+                >
+                  <motion.button
+                    className="buttonTwoxdandfig-One"
+                    whileHover={{ scale: 1.05 }}
+                  >
                     <img
                       src="/Frame (2).png"
                       alt="html-image"
                       style={{ width: "20px" }}
                     />
                     {p.action.label}
-                  </button>
-                  <div className="letter-image-pos-absolu">
+                  </motion.button>
+                  <motion.div
+                    className="letter-image-pos-absolu"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ delay: 0.8 }}
+                  >
                     <img
                       src="/letter-i.png"
                       style={{ width: "30px" }}
                       alt="letter-image"
                     />
-                  </div>
-                </div>
-              </div>
-            </Col>
-          </Row>
+                  </motion.div>
+                </motion.div>
+              </Col>
+            </Row>
+          </motion.div>
         ))}
 
-        {/* <div className="center-align">
-          <a href={projectData.cta.href} className="btn-one mt-4 mb-4">
-            <img
-              src={projectData.cta.icon}
-              alt="github"
-              style={{ width: "20px" }}
-            />{" "}
-            {projectData.cta.label}
-          </a>
-        </div> */}
-
-        <hr className="horizontaline" />
-      </div>
+        <motion.hr
+          className="horizontaline"
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
+      </motion.div>
     </Container>
   );
 }

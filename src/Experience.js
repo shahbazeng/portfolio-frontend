@@ -763,25 +763,243 @@
 //   );
 // }
 // export default Experiance;
+// ------------------------------------------------------------------------------------
+// import React, { useContext } from "react";
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container, Row, Col } from "react-bootstrap";
+// import experienceData from "./data/Experience.json";
 
-import React, { useContext } from "react";
+// function Experiance() {
+//   const { toggle } = useContext(MyContext);
+
+//   return (
+//     <Container>
+//       <div>
+//         <div className="experience-text-design mb-5">
+//           {experienceData.title}
+//         </div>
+
+//         {experienceData.jobs.map((job, index) => (
+//           <div
+//             key={index}
+//             className={
+//               toggle
+//                 ? index === 1
+//                   ? "bgLightTextBlack-second-container"
+//                   : "bgLightTextBlack"
+//                 : index === 1
+//                 ? "bgLightTextBlack-second-container"
+//                 : "bgLightTextBlack-dark"
+//             }
+//           >
+//             <Row className="dispaly-flex-direction-column">
+//               {/* Left Side: Company & Logo */}
+//               <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+//                 <div className="display-left-alignment backgroundBlack">
+//                   <div className="colorSize">{job.company}</div>
+//                   <div className="Size">
+//                     <img
+//                       src={experienceData.icons.location}
+//                       alt="location"
+//                       style={{ width: "10px" }}
+//                     />{" "}
+//                     {job.location}
+//                   </div>
+//                 </div>
+//                 <div className="imageAbsolute">
+//                   <img
+//                     src={job.logo}
+//                     alt={`${job.company} logo`}
+//                     style={{ width: "60px" }}
+//                   />
+//                 </div>
+//               </Col>
+
+//               {/* Right Side: Date Range */}
+//               <Col
+//                 xs={12}
+//                 sm={12}
+//                 md={6}
+//                 lg={6}
+//                 xl={6}
+//                 xxl={6}
+//                 className="position-absolute-simple"
+//               >
+//                 <div className="alignEnd">
+//                   <button
+//                     className={
+//                       index === 1
+//                         ? "clandarButton-second-container"
+//                         : "clandarButton"
+//                     }
+//                   >
+//                     <img
+//                       src={experienceData.icons.calendar}
+//                       alt="calendar"
+//                       style={{ width: "20px" }}
+//                     />{" "}
+//                     {job.dateRange}
+//                   </button>
+//                 </div>
+//               </Col>
+//             </Row>
+
+//             {/* Role */}
+//             <div className="dflexTextImage">
+//               <div>
+//                 <img
+//                   src={experienceData.icons.roleIcon}
+//                   alt="role"
+//                   style={{ width: "40px" }}
+//                 />
+//               </div>
+//               <div className="fw-bold">{job.role}</div>
+//             </div>
+
+//             {/* Highlights */}
+//             {job.highlights.map((point, idx) => (
+//               <div className="dflexTextImage" key={idx}>
+//                 <div>
+//                   <img
+//                     src={experienceData.icons.bullet}
+//                     alt="bullet"
+//                     style={{ width: "13px" }}
+//                   />
+//                 </div>
+//                 <div>{point}</div>
+//               </div>
+//             ))}
+//           </div>
+//         ))}
+
+//         <hr className="horizontaline" />
+//       </div>
+//     </Container>
+//   );
+// }
+
+// export default Experiance;
+
+import React, { useContext, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./App.css";
 import { MyContext } from "./MyContext";
 import { Container, Row, Col } from "react-bootstrap";
 import experienceData from "./data/Experience.json";
 
-function Experiance() {
+function Experience() {
   const { toggle } = useContext(MyContext);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  // Directional animation variants
+  const titleVariants = {
+    hidden: { y: -50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 120 },
+    },
+  };
+
+  const jobVariants = (index) => ({
+    hidden: {
+      x: index % 2 === 0 ? -100 : 100,
+      opacity: 0,
+      rotate: index % 2 === 0 ? -5 : 5,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 10,
+        delay: index * 0.15,
+      },
+    },
+  });
+
+  const logoVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        delay: 0.4,
+      },
+    },
+  };
+
+  const calendarVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        delay: 0.5,
+      },
+    },
+  };
+
+  const roleVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        delay: 0.6,
+      },
+    },
+  };
+
+  const bulletVariants = (i) => ({
+    hidden: {
+      x: i % 2 === 0 ? -50 : 50,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.7 + i * 0.1,
+        type: "spring",
+        stiffness: 120,
+      },
+    },
+  });
 
   return (
-    <Container>
-      <div>
-        <div className="experience-text-design mb-5">
+    <Container ref={ref}>
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        transition={{ staggerChildren: 0.1 }}
+      >
+        {/* Title - Comes from top */}
+        <motion.div
+          className="experience-text-design mb-5"
+          variants={titleVariants}
+        >
           {experienceData.title}
-        </div>
+          {/* <motion.div
+            className="title-underline"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          /> */}
+        </motion.div>
 
         {experienceData.jobs.map((job, index) => (
-          <div
+          <motion.div
             key={index}
             className={
               toggle
@@ -792,31 +1010,46 @@ function Experiance() {
                 ? "bgLightTextBlack-second-container"
                 : "bgLightTextBlack-dark"
             }
+            variants={jobVariants(index)}
+            whileHover={{ y: -5 }}
           >
             <Row className="dispaly-flex-direction-column">
-              {/* Left Side: Company & Logo */}
+              {/* Left Side - Comes from left */}
               <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                <div className="display-left-alignment backgroundBlack">
+                <motion.div
+                  className="display-left-alignment backgroundBlack"
+                  initial={{ x: -50 }}
+                  animate={isInView ? { x: 0 } : { x: -50 }}
+                  transition={{ delay: 0.2 }}
+                >
                   <div className="colorSize">{job.company}</div>
                   <div className="Size">
-                    <img
+                    <motion.img
                       src={experienceData.icons.location}
                       alt="location"
                       style={{ width: "10px" }}
+                      whileHover={{ scale: 1.5, rotate: 15 }}
                     />{" "}
                     {job.location}
                   </div>
-                </div>
-                <div className="imageAbsolute">
-                  <img
+                </motion.div>
+
+                {/* Logo - Pops in */}
+                <motion.div className="imageAbsolute" variants={logoVariants}>
+                  <motion.img
                     src={job.logo}
                     alt={`${job.company} logo`}
                     style={{ width: "60px" }}
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: [0, 10, -10, 0],
+                      transition: { duration: 0.7 },
+                    }}
                   />
-                </div>
+                </motion.div>
               </Col>
 
-              {/* Right Side: Date Range */}
+              {/* Right Side - Comes from bottom */}
               <Col
                 xs={12}
                 sm={12}
@@ -826,57 +1059,72 @@ function Experiance() {
                 xxl={6}
                 className="position-absolute-simple"
               >
-                <div className="alignEnd">
-                  <button
+                <motion.div className="alignEnd" variants={calendarVariants}>
+                  <motion.button
                     className={
                       index === 1
                         ? "clandarButton-second-container"
                         : "clandarButton"
                     }
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+                    }}
                   >
-                    <img
+                    <motion.img
                       src={experienceData.icons.calendar}
                       alt="calendar"
                       style={{ width: "20px" }}
+                      whileHover={{ scale: 1.3, rotate: 15 }}
                     />{" "}
                     {job.dateRange}
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               </Col>
             </Row>
 
-            {/* Role */}
-            <div className="dflexTextImage">
-              <div>
+            {/* Role - Comes from left */}
+            <motion.div className="dflexTextImage" variants={roleVariants}>
+              <motion.div whileHover={{ scale: 1.2, rotate: 15 }}>
                 <img
                   src={experienceData.icons.roleIcon}
                   alt="role"
                   style={{ width: "40px" }}
                 />
-              </div>
+              </motion.div>
               <div className="fw-bold">{job.role}</div>
-            </div>
+            </motion.div>
 
-            {/* Highlights */}
+            {/* Highlights - Alternate directions */}
             {job.highlights.map((point, idx) => (
-              <div className="dflexTextImage" key={idx}>
-                <div>
+              <motion.div
+                className="dflexTextImage"
+                key={idx}
+                variants={bulletVariants(idx)}
+              >
+                <motion.div whileHover={{ scale: 1.5, rotate: 15 }}>
                   <img
                     src={experienceData.icons.bullet}
                     alt="bullet"
                     style={{ width: "13px" }}
                   />
-                </div>
-                <div>{point}</div>
-              </div>
+                </motion.div>
+                <motion.div whileHover={{ x: 5 }}>{point}</motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ))}
 
-        <hr className="horizontaline" />
-      </div>
+        {/* Divider - Expands from center */}
+        <motion.hr
+          className="horizontaline"
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
+      </motion.div>
     </Container>
   );
 }
 
-export default Experiance;
+export default Experience;

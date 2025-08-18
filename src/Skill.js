@@ -260,8 +260,87 @@
 //     )
 // }
 // export default Skill;
+// -----------------------------------------------------------------------------------------------------------------
+// import React, { useContext } from "react";
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container } from "react-bootstrap";
+// import { MdOutlineFileDownload } from "react-icons/md";
+// import skillData from "./data/Skill.json";
 
-import React, { useContext } from "react";
+// function Skill() {
+//   const { toggle } = useContext(MyContext);
+
+//   const renderButtons = (list) =>
+//     list.map((item) => (
+//       <button key={item.label} className="buttonTwoxdandfig">
+//         <img src={item.icon} alt={item.label} style={{ width: "20px" }} />{" "}
+//         {item.label}
+//       </button>
+//     ));
+
+//   return (
+//     <Container>
+//       <div>
+//         <div className="experience-text-design mb-5">{skillData.title}</div>
+
+//         {/* Design Tools */}
+//         <div className="experience-text-design mb-5">
+//           {skillData.design.title}
+//         </div>
+//         <div className="displayFlexTwoNumbers">
+//           {/* Design tools have larger icons in your light code; keep 30px if you want */}
+//           {skillData.design.tools.map((item) => (
+//             <button key={item.label} className="buttonTwoxdandfig">
+//               <img src={item.icon} alt={item.label} style={{ width: "30px" }} />
+//               {item.label}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* Technologies */}
+//         <div className="experience-text-design mt-5 mb-5">
+//           {skillData.tech.title}
+//         </div>
+//         <div className="displayFlexTwoNumbers-second-Container">
+//           {renderButtons(skillData.tech.tools)}
+//         </div>
+
+//         {/* Dev & Productivity */}
+//         <div className="mb-5 mt-2 width-hundred-display-align">
+//           <div className="w-50 experience-text-design-one">
+//             {skillData.devProd.titleLine1}
+//             <br />
+//             {skillData.devProd.titleLine2}
+//           </div>
+//         </div>
+//         <div className="displayFlexTwoNumbers-second-Container">
+//           {renderButtons(skillData.devProd.tools)}
+//         </div>
+
+//         {/* Resume */}
+//         <div className="center-align">
+//           <a
+//             href={skillData.resume.file}
+//             download
+//             className="btn-two"
+//             style={{ textDecoration: "none" }}
+//           >
+//             <MdOutlineFileDownload className="svgIcon" />{" "}
+//             {skillData.resume.label}
+//           </a>
+//         </div>
+
+//         <hr className="horizontaline" />
+//       </div>
+//     </Container>
+//   );
+// }
+
+// export default Skill;
+
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./App.css";
 import { MyContext } from "./MyContext";
 import { Container } from "react-bootstrap";
@@ -270,69 +349,189 @@ import skillData from "./data/Skill.json";
 
 function Skill() {
   const { toggle } = useContext(MyContext);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const [activeTechGroup, setActiveTechGroup] = useState(0);
+  const itemsPerGroup = 6; // Show 6 items per group
+
+  // Calculate total number of groups needed
+  const totalGroups = Math.ceil(skillData.tech.tools.length / itemsPerGroup);
+
+  // Auto-slide tech groups
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTechGroup((prev) => (prev + 1) % totalGroups);
+    }, 3000); // Change group every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [totalGroups]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
 
   const renderButtons = (list) =>
-    list.map((item) => (
-      <button key={item.label} className="buttonTwoxdandfig">
+    list.map((item, i) => (
+      <motion.button
+        key={item.label}
+        className="buttonTwoxdandfig"
+        initial="hidden"
+        animate="visible"
+        variants={itemVariants}
+        custom={i}
+        whileHover={{ scale: 1.05 }}
+      >
         <img src={item.icon} alt={item.label} style={{ width: "20px" }} />{" "}
         {item.label}
-      </button>
+      </motion.button>
     ));
 
   return (
-    <Container>
-      <div>
-        <div className="experience-text-design mb-5">{skillData.title}</div>
+    <Container ref={ref}>
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        {/* Title */}
+        <motion.div
+          className="experience-text-design mb-5"
+          variants={itemVariants}
+        >
+          {skillData.title}
+        </motion.div>
 
         {/* Design Tools */}
-        <div className="experience-text-design mb-5">
+        <motion.div
+          className="experience-text-design mb-5"
+          variants={itemVariants}
+        >
           {skillData.design.title}
-        </div>
-        <div className="displayFlexTwoNumbers">
-          {/* Design tools have larger icons in your light code; keep 30px if you want */}
-          {skillData.design.tools.map((item) => (
-            <button key={item.label} className="buttonTwoxdandfig">
-              <img src={item.icon} alt={item.label} style={{ width: "30px" }} />{" "}
+        </motion.div>
+        <motion.div
+          className="displayFlexTwoNumbers"
+          variants={containerVariants}
+        >
+          {skillData.design.tools.map((item, i) => (
+            <motion.button
+              key={item.label}
+              className="buttonTwoxdandfig"
+              variants={itemVariants}
+              custom={i}
+              whileHover={{ scale: 1.05 }}
+            >
+              <img src={item.icon} alt={item.label} style={{ width: "30px" }} />
               {item.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Technologies */}
-        <div className="experience-text-design mt-5 mb-5">
+        {/* Technologies - Grouped slider */}
+        <motion.div
+          className="experience-text-design mt-5 mb-5"
+          variants={itemVariants}
+        >
           {skillData.tech.title}
-        </div>
-        <div className="displayFlexTwoNumbers-second-Container">
-          {renderButtons(skillData.tech.tools)}
+        </motion.div>
+
+        <div className="tech-slider-container">
+          <motion.div
+            className="tech-slider-track"
+            animate={{
+              x: `-${activeTechGroup * 100}%`,
+              transition: { type: "spring", stiffness: 100, damping: 10 },
+            }}
+          >
+            {Array.from({ length: totalGroups }).map((_, groupIndex) => (
+              <div key={groupIndex} className="tech-slide-group">
+                {skillData.tech.tools
+                  .slice(
+                    groupIndex * itemsPerGroup,
+                    (groupIndex + 1) * itemsPerGroup
+                  )
+                  .map((item, itemIndex) => (
+                    <motion.div
+                      key={item.label}
+                      className="tech-item"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: itemIndex * 0.05 }}
+                    >
+                      <button className="buttonTwoxdandfig w-100">
+                        <img
+                          src={item.icon}
+                          alt={item.label}
+                          style={{ width: "20px" }}
+                        />
+                        {item.label}
+                      </button>
+                    </motion.div>
+                  ))}
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Dev & Productivity */}
-        <div className="mb-5 mt-2 width-hundred-display-align">
+        <motion.div
+          className="mb-5 mt-2 width-hundred-display-align"
+          variants={itemVariants}
+        >
           <div className="w-50 experience-text-design-one">
             {skillData.devProd.titleLine1}
             <br />
             {skillData.devProd.titleLine2}
           </div>
-        </div>
-        <div className="displayFlexTwoNumbers-second-Container">
+        </motion.div>
+        <motion.div
+          className="displayFlexTwoNumbers-second-Container"
+          variants={containerVariants}
+        >
           {renderButtons(skillData.devProd.tools)}
-        </div>
+        </motion.div>
 
         {/* Resume */}
-        <div className="center-align">
-          <a
+        <motion.div className="center-align" variants={itemVariants}>
+          <motion.a
             href={skillData.resume.file}
             download
             className="btn-two"
             style={{ textDecoration: "none" }}
+            whileHover={{ scale: 1.05 }}
           >
             <MdOutlineFileDownload className="svgIcon" />{" "}
             {skillData.resume.label}
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <hr className="horizontaline" />
-      </div>
+        <motion.hr
+          className="horizontaline"
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
+      </motion.div>
     </Container>
   );
 }

@@ -228,8 +228,124 @@
 //     )
 // }
 // export default Education;
+// ------------------------------------------------------------------------------------------------------------
+// import React, { useContext } from "react";
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container, Row, Col } from "react-bootstrap";
+// import educationData from "./data/Education.json";
 
-import React, { useContext } from "react";
+// function Education() {
+//   const { toggle } = useContext(MyContext);
+
+//   // helper classes (index-based + theme-based)
+//   const getCardClass = (i) =>
+//     i === 0
+//       ? "backgroundColorOnCard"
+//       : toggle
+//       ? "backgroundColorOnCard-secondContainer"
+//       : "backgroundColorOnCard-secondContainer-dark";
+
+//   const getStageBtnClass = (i) =>
+//     i === 0 ? "image-design-one" : "image-design-one-secondContainer";
+
+//   const getDegreeBtnClass = (i) =>
+//     i === 0 ? "degreeButton" : "degreeButton-secondContainer";
+
+//   const getShortBtnClass = (i) =>
+//     i === 0 ? "BCAbutton" : "BCAbutton-secondContainer";
+
+//   return (
+//     <Container>
+//       <div>
+//         <div className="font-size-setup">{educationData.title}</div>
+
+//         <Row className="mt-5">
+//           {educationData.items.map((item, i) => (
+//             <Col key={item.years} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+//               <div className={getCardClass(i)}>
+//                 {/* top row: years + stage */}
+//                 <div className="dflexjustspaceBetween">
+//                   <div>
+//                     <button className="image-design">
+//                       <img
+//                         src={educationData.icons.calendar}
+//                         className="mt-2 buttonImg"
+//                         alt="calendar"
+//                         style={{ width: "30px" }}
+//                       />
+//                       {item.years}
+//                     </button>
+//                   </div>
+//                   <div>
+//                     <button className={getStageBtnClass(i)}>
+//                       <img
+//                         src={educationData.icons.cap}
+//                         className="mt-2"
+//                         alt="cap"
+//                         style={{ width: "30px" }}
+//                       />
+//                       {item.stage}
+//                     </button>
+//                   </div>
+//                 </div>
+
+//                 {/* degree + short code */}
+//                 <div className="disgap">
+//                   <button className={getDegreeBtnClass(i)}>
+//                     {item.degree}
+//                   </button>
+//                   <div>
+//                     <button className={getShortBtnClass(i)}>
+//                       {item.short}
+//                     </button>
+//                   </div>
+//                 </div>
+
+//                 {/* program title */}
+//                 <div className="mt-3 card-text">{item.program}</div>
+
+//                 {/* university */}
+//                 <div className="twoitemsinOneLine">
+//                   <div
+//                     className={i === 0 ? "bgWhite" : "bgWhite-secodContainer"}
+//                   >
+//                     <img
+//                       src={educationData.icons.university}
+//                       alt="university"
+//                       style={{ width: "20px" }}
+//                     />
+//                   </div>
+//                   <div className="alignitems">{item.university}</div>
+//                 </div>
+
+//                 {/* location */}
+//                 <div className="twoitemsinOneLine">
+//                   <div
+//                     className={i === 0 ? "bgWhite" : "bgWhite-secodContainer"}
+//                   >
+//                     <img
+//                       src={educationData.icons.location}
+//                       alt="location"
+//                       style={{ width: "16px" }}
+//                     />
+//                   </div>
+//                   <div className="alignitems">{item.location}</div>
+//                 </div>
+//               </div>
+//             </Col>
+//           ))}
+//         </Row>
+
+//         <hr className="horizontaline" />
+//       </div>
+//     </Container>
+//   );
+// }
+
+// export default Education;
+import React, { useContext, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./App.css";
 import { MyContext } from "./MyContext";
 import { Container, Row, Col } from "react-bootstrap";
@@ -237,6 +353,47 @@ import educationData from "./data/Education.json";
 
 function Education() {
   const { toggle } = useContext(MyContext);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const floatingVariants = {
+    float: {
+      y: [-5, 5],
+      transition: {
+        y: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+        },
+      },
+    },
+  };
 
   // helper classes (index-based + theme-based)
   const getCardClass = (i) =>
@@ -256,89 +413,168 @@ function Education() {
     i === 0 ? "BCAbutton" : "BCAbutton-secondContainer";
 
   return (
-    <Container>
-      <div>
-        <div className="font-size-setup">{educationData.title}</div>
+    <Container ref={ref}>
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <motion.div className="font-size-setup" variants={itemVariants}>
+          {educationData.title}
+        </motion.div>
 
         <Row className="mt-5">
           {educationData.items.map((item, i) => (
             <Col key={item.years} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-              <div className={getCardClass(i)}>
+              <motion.div
+                className={getCardClass(i)}
+                variants={itemVariants}
+                custom={i}
+                whileHover={{ y: -5 }}
+              >
+                {/* Floating icons */}
+                <motion.div
+                  className="floating-icon"
+                  variants={floatingVariants}
+                  animate={isInView ? "float" : ""}
+                  style={{
+                    position: "absolute",
+                    right: "20px",
+                    top: "20px",
+                    opacity: 0.2,
+                  }}
+                >
+                  <img
+                    src={educationData.icons.cap}
+                    alt="floating cap"
+                    style={{ width: "40px" }}
+                  />
+                </motion.div>
+
                 {/* top row: years + stage */}
                 <div className="dflexjustspaceBetween">
                   <div>
-                    <button className="image-design">
-                      <img
+                    <motion.button
+                      className="image-design"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <motion.img
                         src={educationData.icons.calendar}
                         className="mt-2 buttonImg"
                         alt="calendar"
                         style={{ width: "30px" }}
+                        whileHover={{ rotate: 10 }}
                       />
                       {item.years}
-                    </button>
+                    </motion.button>
                   </div>
                   <div>
-                    <button className={getStageBtnClass(i)}>
-                      <img
+                    <motion.button
+                      className={getStageBtnClass(i)}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <motion.img
                         src={educationData.icons.cap}
                         className="mt-2"
                         alt="cap"
                         style={{ width: "30px" }}
+                        animate={{
+                          y: [0, -5, 0],
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
                       />
                       {item.stage}
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
 
                 {/* degree + short code */}
                 <div className="disgap">
-                  <button className={getDegreeBtnClass(i)}>
+                  <motion.button
+                    className={getDegreeBtnClass(i)}
+                    initial={{ scale: 0.9 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0.9 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
                     {item.degree}
-                  </button>
+                  </motion.button>
                   <div>
-                    <button className={getShortBtnClass(i)}>
+                    <motion.button
+                      className={getShortBtnClass(i)}
+                      whileHover={{ scale: 1.1 }}
+                    >
                       {item.short}
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
 
                 {/* program title */}
-                <div className="mt-3 card-text">{item.program}</div>
+                <motion.div
+                  className="mt-3 card-text"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {item.program}
+                </motion.div>
 
                 {/* university */}
-                <div className="twoitemsinOneLine">
+                <motion.div
+                  className="twoitemsinOneLine"
+                  initial={{ x: -20 }}
+                  animate={isInView ? { x: 0 } : { x: -20 }}
+                  transition={{ delay: 0.4 }}
+                >
                   <div
                     className={i === 0 ? "bgWhite" : "bgWhite-secodContainer"}
                   >
-                    <img
+                    <motion.img
                       src={educationData.icons.university}
                       alt="university"
                       style={{ width: "20px" }}
+                      whileHover={{ scale: 1.2 }}
                     />
                   </div>
                   <div className="alignitems">{item.university}</div>
-                </div>
+                </motion.div>
 
                 {/* location */}
-                <div className="twoitemsinOneLine">
+                <motion.div
+                  className="twoitemsinOneLine"
+                  initial={{ x: -20 }}
+                  animate={isInView ? { x: 0 } : { x: -20 }}
+                  transition={{ delay: 0.5 }}
+                >
                   <div
                     className={i === 0 ? "bgWhite" : "bgWhite-secodContainer"}
                   >
-                    <img
+                    <motion.img
                       src={educationData.icons.location}
                       alt="location"
                       style={{ width: "16px" }}
+                      whileHover={{ scale: 1.2 }}
                     />
                   </div>
                   <div className="alignitems">{item.location}</div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </Col>
           ))}
         </Row>
 
-        <hr className="horizontaline" />
-      </div>
+        <motion.hr
+          className="horizontaline"
+          initial={{ width: 0 }}
+          animate={isInView ? { width: "100%" } : { width: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        />
+      </motion.div>
     </Container>
   );
 }
