@@ -433,23 +433,6 @@ function Education() {
                 whileHover={{ y: -5 }}
               >
                 {/* Floating icons */}
-                <motion.div
-                  className="floating-icon"
-                  variants={floatingVariants}
-                  animate={isInView ? "float" : ""}
-                  style={{
-                    position: "absolute",
-                    right: "20px",
-                    top: "20px",
-                    opacity: 0.2,
-                  }}
-                >
-                  <img
-                    src={educationData.icons.cap}
-                    alt="floating cap"
-                    style={{ width: "40px" }}
-                  />
-                </motion.div>
 
                 {/* top row: years + stage */}
                 <div className="dflexjustspaceBetween">

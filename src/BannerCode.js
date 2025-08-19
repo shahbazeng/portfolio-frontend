@@ -1078,8 +1078,7 @@ function BannerCode() {
             variants={containerVariants}
           >
             <motion.div variants={textVariants} className="textLight-dark">
-              {bannerData.intro.greeting}{" "}
-              <span className="change-color">{bannerData.intro.name}</span>
+              {renderGreeting()}
             </motion.div>
 
             <motion.div variants={textVariants} className="fontweight-dark">
@@ -1109,7 +1108,7 @@ function BannerCode() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <MdOutlineFileDownload className="svgIcon" />{" "}
+                <MdOutlineFileDownload className="svgIcon" />
                 {bannerData.buttons.resume.label}
               </motion.a>
               <motion.button

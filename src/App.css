@@ -1605,6 +1605,7 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.5;
 }
 
 /* FRONT layer: mouse-only lines */
