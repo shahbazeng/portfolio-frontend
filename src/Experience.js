@@ -880,8 +880,267 @@
 // }
 
 // export default Experiance;
+// -----------------------------------------------------------------------------------------------------
+// without integrate api
+// import React, { useContext, useEffect, useRef } from "react";
+// import { motion, useInView } from "framer-motion";
+// import "./App.css";
+// import { MyContext } from "./MyContext";
+// import { Container, Row, Col } from "react-bootstrap";
+// import experienceData from "./data/Experience.json";
 
-import React, { useContext, useRef } from "react";
+// function Experience() {
+//   const { toggle } = useContext(MyContext);
+//   const ref = useRef(null);
+//   const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+//   // Directional animation variants
+//   const titleVariants = {
+//     hidden: { y: -50, opacity: 0 },
+//     visible: {
+//       y: 0,
+//       opacity: 1,
+//       transition: { type: "spring", stiffness: 120 },
+//     },
+//   };
+
+//   const jobVariants = (index) => ({
+//     hidden: {
+//       x: index % 2 === 0 ? -100 : 100,
+//       opacity: 0,
+//       rotate: index % 2 === 0 ? -5 : 5,
+//     },
+//     visible: {
+//       x: 0,
+//       opacity: 1,
+//       rotate: 0,
+//       transition: {
+//         type: "spring",
+//         stiffness: 80,
+//         damping: 10,
+//         delay: index * 0.15,
+//       },
+//     },
+//   });
+
+//   const logoVariants = {
+//     hidden: { scale: 0, opacity: 0 },
+//     visible: {
+//       scale: 1,
+//       opacity: 1,
+//       transition: {
+//         type: "spring",
+//         stiffness: 200,
+//         delay: 0.4,
+//       },
+//     },
+//   };
+
+//   const calendarVariants = {
+//     hidden: { y: 30, opacity: 0 },
+//     visible: {
+//       y: 0,
+//       opacity: 1,
+//       transition: {
+//         type: "spring",
+//         stiffness: 100,
+//         delay: 0.5,
+//       },
+//     },
+//   };
+
+//   const roleVariants = {
+//     hidden: { x: -50, opacity: 0 },
+//     visible: {
+//       x: 0,
+//       opacity: 1,
+//       transition: {
+//         type: "spring",
+//         stiffness: 100,
+//         delay: 0.6,
+//       },
+//     },
+//   };
+
+//   const bulletVariants = (i) => ({
+//     hidden: {
+//       x: i % 2 === 0 ? -50 : 50,
+//       opacity: 0,
+//     },
+//     visible: {
+//       x: 0,
+//       opacity: 1,
+//       transition: {
+//         delay: 0.7 + i * 0.1,
+//         type: "spring",
+//         stiffness: 120,
+//       },
+//     },
+//   });
+
+//   useEffect(() => {
+//     async function fetchData() {
+//       const response = await fetch(
+//         `${process.env.REACT_APP_API_BASE}/api/experiences`
+//       );
+//       const data = await response.json();
+//       console.log("data experiences", data);
+//     }
+//     fetchData();
+//   }, []);
+//   return (
+//     <Container ref={ref}>
+//       <motion.div
+//         initial="hidden"
+//         animate={isInView ? "visible" : "hidden"}
+//         transition={{ staggerChildren: 0.1 }}
+//       >
+//         {/* Title - Comes from top */}
+//         <motion.div
+//           className="experience-text-design mb-5"
+//           variants={titleVariants}
+//         >
+//           {experienceData.title}
+//           {/* <motion.div
+//             className="title-underline"
+//             initial={{ scaleX: 0 }}
+//             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+//             transition={{ delay: 0.3, duration: 0.5 }}
+//           /> */}
+//         </motion.div>
+
+//         {experienceData.jobs.map((job, index) => (
+//           <motion.div
+//             key={index}
+//             className={
+//               toggle
+//                 ? index === 1
+//                   ? "bgLightTextBlack-second-container"
+//                   : "bgLightTextBlack"
+//                 : index === 1
+//                 ? "bgLightTextBlack-second-container"
+//                 : "bgLightTextBlack-dark"
+//             }
+//             variants={jobVariants(index)}
+//             whileHover={{ y: -5 }}
+//           >
+//             <Row className="dispaly-flex-direction-column">
+//               {/* Left Side - Comes from left */}
+//               <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+//                 <motion.div
+//                   className="display-left-alignment backgroundBlack"
+//                   initial={{ x: -50 }}
+//                   animate={isInView ? { x: 0 } : { x: -50 }}
+//                   transition={{ delay: 0.2 }}
+//                 >
+//                   <div className="colorSize">{job.company}</div>
+//                   <div className="Size">
+//                     <motion.img
+//                       src={experienceData.icons.location}
+//                       alt="location"
+//                       style={{ width: "10px" }}
+//                       whileHover={{ scale: 1.5, rotate: 15 }}
+//                     />{" "}
+//                     {job.location}
+//                   </div>
+//                 </motion.div>
+
+//                 {/* Logo - Pops in */}
+//                 <motion.div className="imageAbsolute" variants={logoVariants}>
+//                   <motion.img
+//                     src={job.logo}
+//                     alt={`${job.company} logo`}
+//                     style={{ width: "60px" }}
+//                     whileHover={{
+//                       scale: 1.1,
+//                       rotate: [0, 10, -10, 0],
+//                       transition: { duration: 0.7 },
+//                     }}
+//                   />
+//                 </motion.div>
+//               </Col>
+
+//               {/* Right Side - Comes from bottom */}
+//               <Col
+//                 xs={12}
+//                 sm={12}
+//                 md={6}
+//                 lg={6}
+//                 xl={6}
+//                 xxl={6}
+//                 className="position-absolute-simple"
+//               >
+//                 <motion.div className="alignEnd" variants={calendarVariants}>
+//                   <motion.button
+//                     className={
+//                       index === 1
+//                         ? "clandarButton-second-container"
+//                         : "clandarButton"
+//                     }
+//                     whileHover={{
+//                       scale: 1.05,
+//                       boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+//                     }}
+//                   >
+//                     <motion.img
+//                       src={experienceData.icons.calendar}
+//                       alt="calendar"
+//                       style={{ width: "20px" }}
+//                       whileHover={{ scale: 1.3, rotate: 15 }}
+//                     />{" "}
+//                     {job.dateRange}
+//                   </motion.button>
+//                 </motion.div>
+//               </Col>
+//             </Row>
+
+//             {/* Role - Comes from left */}
+//             <motion.div className="dflexTextImage" variants={roleVariants}>
+//               <motion.div whileHover={{ scale: 1.2, rotate: 15 }}>
+//                 <img
+//                   src={experienceData.icons.roleIcon}
+//                   alt="role"
+//                   style={{ width: "40px" }}
+//                 />
+//               </motion.div>
+//               <div className="fw-bold">{job.role}</div>
+//             </motion.div>
+
+//             {/* Highlights - Alternate directions */}
+//             {job.highlights.map((point, idx) => (
+//               <motion.div
+//                 className="dflexTextImage"
+//                 key={idx}
+//                 variants={bulletVariants(idx)}
+//               >
+//                 <motion.div whileHover={{ scale: 1.5, rotate: 15 }}>
+//                   <img
+//                     src={experienceData.icons.bullet}
+//                     alt="bullet"
+//                     style={{ width: "13px" }}
+//                   />
+//                 </motion.div>
+//                 <motion.div whileHover={{ x: 5 }}>{point}</motion.div>
+//               </motion.div>
+//             ))}
+//           </motion.div>
+//         ))}
+
+//         {/* Divider - Expands from center */}
+//         <motion.hr
+//           className="horizontaline"
+//           initial={{ scaleX: 0 }}
+//           animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+//           transition={{ duration: 0.8, delay: 0.5 }}
+//         />
+//       </motion.div>
+//     </Container>
+//   );
+// }
+
+// export default Experience;
+
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import "./App.css";
 import { MyContext } from "./MyContext";
@@ -893,7 +1152,57 @@ function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
-  // Directional animation variants
+  // ---------- API state (About pattern) ----------
+  const [apiJobs, setApiJobs] = useState(null);
+  const API_BASE = (process.env.REACT_APP_API_BASE || "").replace(/\/+$/, "");
+
+  useEffect(() => {
+    const ac = new AbortController();
+
+    (async () => {
+      try {
+        const r = await fetch(`${API_BASE}/api/experiences`, {
+          signal: ac.signal,
+          // credentials: "include", // uncomment if your API uses auth cookies
+        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const json = await r.json();
+
+        // normalize + sort newest first
+        const jobs = (Array.isArray(json) ? json : json?.data || []).map(
+          (j) => ({
+            ...j,
+            highlights: Array.isArray(j.highlights)
+              ? j.highlights
+              : j.highlights
+              ? [j.highlights]
+              : [],
+          })
+        );
+
+        jobs.sort(
+          (a, b) =>
+            new Date(b.updatedAt || b.createdAt || 0) -
+            new Date(a.updatedAt || a.createdAt || 0)
+        );
+
+        setApiJobs(jobs);
+      } catch (e) {
+        if (e.name !== "AbortError") {
+          console.warn("Experiences: falling back to local JSON.", e);
+        }
+        setApiJobs(null);
+      }
+    })();
+
+    return () => ac.abort();
+  }, [API_BASE]);
+  // ------------------------------------------------
+
+  // use API data if present, else fallback to static JSON
+  const jobs = apiJobs && apiJobs.length ? apiJobs : experienceData.jobs;
+
+  // ---------- animations ----------
   const titleVariants = {
     hidden: { y: -50, opacity: 0 },
     visible: {
@@ -927,11 +1236,7 @@ function Experience() {
     visible: {
       scale: 1,
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        delay: 0.4,
-      },
+      transition: { type: "spring", stiffness: 200, delay: 0.4 },
     },
   };
 
@@ -940,11 +1245,7 @@ function Experience() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        delay: 0.5,
-      },
+      transition: { type: "spring", stiffness: 100, delay: 0.5 },
     },
   };
 
@@ -953,29 +1254,36 @@ function Experience() {
     visible: {
       x: 0,
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        delay: 0.6,
-      },
+      transition: { type: "spring", stiffness: 100, delay: 0.6 },
     },
   };
 
   const bulletVariants = (i) => ({
-    hidden: {
-      x: i % 2 === 0 ? -50 : 50,
-      opacity: 0,
-    },
+    hidden: { x: i % 2 === 0 ? -50 : 50, opacity: 0 },
     visible: {
       x: 0,
       opacity: 1,
-      transition: {
-        delay: 0.7 + i * 0.1,
-        type: "spring",
-        stiffness: 120,
-      },
+      transition: { delay: 0.7 + i * 0.1, type: "spring", stiffness: 120 },
     },
   });
+
+  // theme helpers (unchanged)
+  const cardClass = (index) =>
+    toggle
+      ? index === 1
+        ? "bgLightTextBlack-second-container"
+        : "bgLightTextBlack"
+      : index === 1
+      ? "bgLightTextBlack-second-container"
+      : "bgLightTextBlack-dark";
+
+  // resolve relative/absolute logo URLs safely
+  const resolveLogo = (src) => {
+    if (!src) return "";
+    if (src.startsWith("http")) return src;
+    // allow absolute-from-root paths like "/cap.png"
+    return src.startsWith("/") ? src : `${API_BASE}/${src}`;
+  };
 
   return (
     <Container ref={ref}>
@@ -984,37 +1292,23 @@ function Experience() {
         animate={isInView ? "visible" : "hidden"}
         transition={{ staggerChildren: 0.1 }}
       >
-        {/* Title - Comes from top */}
+        {/* Title */}
         <motion.div
           className="experience-text-design mb-5"
           variants={titleVariants}
         >
           {experienceData.title}
-          {/* <motion.div
-            className="title-underline"
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          /> */}
         </motion.div>
 
-        {experienceData.jobs.map((job, index) => (
+        {jobs.map((job, index) => (
           <motion.div
-            key={index}
-            className={
-              toggle
-                ? index === 1
-                  ? "bgLightTextBlack-second-container"
-                  : "bgLightTextBlack"
-                : index === 1
-                ? "bgLightTextBlack-second-container"
-                : "bgLightTextBlack-dark"
-            }
+            key={job._id || job.company + index}
+            className={cardClass(index)}
             variants={jobVariants(index)}
             whileHover={{ y: -5 }}
           >
             <Row className="dispaly-flex-direction-column">
-              {/* Left Side - Comes from left */}
+              {/* Left */}
               <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                 <motion.div
                   className="display-left-alignment backgroundBlack"
@@ -1034,10 +1328,10 @@ function Experience() {
                   </div>
                 </motion.div>
 
-                {/* Logo - Pops in */}
+                {/* Logo */}
                 <motion.div className="imageAbsolute" variants={logoVariants}>
                   <motion.img
-                    src={job.logo}
+                    src={resolveLogo(job.logo)}
                     alt={`${job.company} logo`}
                     style={{ width: "60px" }}
                     whileHover={{
@@ -1049,7 +1343,7 @@ function Experience() {
                 </motion.div>
               </Col>
 
-              {/* Right Side - Comes from bottom */}
+              {/* Right */}
               <Col
                 xs={12}
                 sm={12}
@@ -1083,7 +1377,7 @@ function Experience() {
               </Col>
             </Row>
 
-            {/* Role - Comes from left */}
+            {/* Role */}
             <motion.div className="dflexTextImage" variants={roleVariants}>
               <motion.div whileHover={{ scale: 1.2, rotate: 15 }}>
                 <img
@@ -1095,8 +1389,8 @@ function Experience() {
               <div className="fw-bold">{job.role}</div>
             </motion.div>
 
-            {/* Highlights - Alternate directions */}
-            {job.highlights.map((point, idx) => (
+            {/* Highlights */}
+            {(job.highlights || []).map((point, idx) => (
               <motion.div
                 className="dflexTextImage"
                 key={idx}
@@ -1115,7 +1409,7 @@ function Experience() {
           </motion.div>
         ))}
 
-        {/* Divider - Expands from center */}
+        {/* Divider */}
         <motion.hr
           className="horizontaline"
           initial={{ scaleX: 0 }}
