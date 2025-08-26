@@ -10,6 +10,8 @@ import CheckoutResume from "./CheckoutResume";
 import Contact from "./Contact";
 import FormData from "./FormData";
 import Footer from "./Footer";
+// import ChatWidget from "./ChatWidget";
+import ChatWidget from "./ChatWidget";
 
 function Home() {
   return (
@@ -26,6 +28,7 @@ function Home() {
       <Contact />
       <FormData />
       <Footer />
+      <ChatWidget webhookUrl="https://n8n.inxgo.com/webhook/8e2c886d-657e-4a14-83a7-dc2a44adfcb6" />
     </div>
   );
 }

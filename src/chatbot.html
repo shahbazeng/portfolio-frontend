@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shahbaz – AI Chatbot Widget</title>
+    <style>
+      :root {
+        --brand: #111827;
+        --accent: #feb20f;
+        --bg: #0b0f16;
+        --panel: #111827;
+        --muted: #9ca3af;
+        --bot: #1f2937;
+        --user: #272e3f;
+        --ring: rgba(254, 178, 15, 0.4);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, Arial, Helvetica, sans-serif;
+        background: #0e1116;
+        color: #e5e7eb;
+      }
+      .chat-launcher {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      }
+      .chat-panel {
+        position: fixed;
+        right: 20px;
+        bottom: 90px;
+        width: 360px;
+        max-width: 92vw;
+        height: 550px;
+        max-height: 70vh;
+        border-radius: 18px;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        display: none;
+        grid-template-rows: auto 1fr auto;
+      }
+      .chat-panel.open {
+        display: grid;
+      }
+      .chat-header {
+        padding: 14px 16px;
+        background: var(--brand);
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-weight: bold;
+      }
+      .chat-body {
+        padding: 16px;
+        background: #0b0f16;
+        overflow: auto;
+      }
+      .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .msg {
+        max-width: 80%;
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 14px;
+        line-height: 1.4;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+      .msg.bot {
+        align-self: flex-start;
+        background: var(--bot);
+      }
+      .msg.user {
+        align-self: flex-end;
+        background: var(--user);
+      }
+      .chat-input {
+        padding: 12px;
+        background: #0f1524;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .chat-input textarea {
+        width: 100%;
+        min-height: 42px;
+        resize: none;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0b0f16;
+        color: #e5e7eb;
+        padding: 10px;
+        font: inherit;
+        outline: none;
+      }
+      .chat-input textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="chat-launcher" id="chatLauncher">💬</button>
+    <section class="chat-panel" id="chatPanel">
+      <header class="chat-header">Shahbaz – AI Chatbot</header>
+      <div class="chat-body">
+        <div class="messages" id="messages"></div>
+      </div>
+      <div class="chat-input">
+        <textarea id="chatText" placeholder="Type your message…"></textarea>
+      </div>
+    </section>
+
+    <script>
+      const WEBHOOK_URL =
+        "https://n8n.inxgo.com/webhook/8e2c886d-657e-4a14-83a7-dc2a44adfcb6";
+      const launcher = document.getElementById("chatLauncher");
+      const panel = document.getElementById("chatPanel");
+      const input = document.getElementById("chatText");
+      const messagesEl = document.getElementById("messages");
+
+      launcher.addEventListener("click", () => panel.classList.toggle("open"));
+
+      input.addEventListener("keydown", async (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          const text = input.value.trim();
+          if (!text) return;
+          addMessage(text, "user");
+          input.value = "";
+          try {
+            const res = await fetch(WEBHOOK_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message: text }),
+            });
+            const data = await res.json();
+            addMessage(
+              data.message || data.reply || data.text || JSON.stringify(data),
+              "bot"
+            );
+          } catch (err) {
+            addMessage("Error: Unable to connect to server.", "bot");
+          }
+        }
+      });
+
+      function addMessage(text, sender) {
+        const div = document.createElement("div");
+        div.className = "msg " + sender;
+        div.textContent = text;
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+    </script>
+  </body>
+</html>
