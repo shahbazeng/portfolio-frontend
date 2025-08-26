@@ -621,12 +621,19 @@ function FormData() {
     if (!validateFields()) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
-        name,
-        email,
-        mobile,
-        subject,
-        message,
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE}/api/forms`,
+        {
+          name,
+          email,
+          mobile,
+          subject,
+          message,
+        }
+      );
+      console.log({
+        data: "data submitted successfully",
+        response: response.data,
       });
 
       if (response.status === 200) {
