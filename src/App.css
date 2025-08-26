@@ -852,6 +852,9 @@
 .image-border {
   border: 2px solid #feb20f;
   border-radius: 100px;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
 }
 .image-align-center {
   display: flex;

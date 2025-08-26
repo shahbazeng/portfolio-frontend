@@ -343,6 +343,7 @@ function CheckoutResume() {
       try {
         const res = await fetch(`${process.env.REACT_APP_API_BASE}/api/resume`);
         const json = await res.json();
+        console.log(json, "resume data");
         // Your sample shows an array with newest first → use [0]
         if (isMounted && Array.isArray(json) && json.length) {
           setResumeData(json[0]);
