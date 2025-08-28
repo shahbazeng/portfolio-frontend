@@ -114,6 +114,7 @@
 // }
 import React, { useEffect, useRef, useState } from "react";
 import "./ChatWidget.css";
+import { FaMessage } from "react-icons/fa6";
 
 export default function ChatWidget({
   webhookUrl,
@@ -199,7 +200,7 @@ export default function ChatWidget({
             Hi there! Have questions about my solutions or need help finding the
             right service? I’m here to help—just ask!
           </p>
-          <small className="powered">Powered by AI</small>
+
           <button
             className="close-intro"
             onClick={() => setShowIntro(false)}
@@ -218,7 +219,7 @@ export default function ChatWidget({
           setShowIntro(false); // hide intro once opened
         }}
       >
-        💬
+        <FaMessage style={{ color: "white", fontSize: "25px" }} />
       </button>
 
       <section className={`chat-panel ${open ? "open" : ""}`}>

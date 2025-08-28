@@ -134,3 +134,6 @@
   font-size: 16px;
   cursor: pointer;
 }
+p {
+  margin-bottom: 0px !important;
+}
