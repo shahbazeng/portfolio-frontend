@@ -117,8 +117,101 @@
 //   );
 // }
 // export default Header;
+// -------------------------------------------------------------------------------------
+//without integration api
 
-import React, { useContext } from "react";
+// import React, { useContext, useEffect } from "react";
+// import "./App.css";
+// import ParticleField from "./ParticleField";
+// import { Container, Nav, Navbar } from "react-bootstrap";
+// import { MdOutlineMenu } from "react-icons/md";
+// import { FiSun } from "react-icons/fi";
+// import { IoMoonOutline } from "react-icons/io5";
+// import { MyContext } from "./MyContext";
+// import headerData from "./data/Header.json";
+
+// function Header() {
+//   const { toggle, toggleHandler } = useContext(MyContext);
+//   const theme = toggle ? "light" : "dark";
+//   const cls = headerData.classes[theme];
+//   useEffect(() => {
+//     async function fetchData() {
+//       let response = await fetch(
+//         `${process.env.REACT_APP_API_BASE}/api/headers`
+//       );
+//       let data = await response.json();
+//       console.log(data, "header data");
+//     }
+//     fetchData();
+//   }, []);
+//   return (
+//     <div>
+//       <ParticleField
+//         dotColor="rgba(255,255,255,0.9)"
+//         lineColor="rgba(255,255,255,0.45)"
+//         density={0.001}
+//         linkRadius={150}
+//         fadeOutMs={600}
+//       />
+//       <Container>
+//         <Navbar className={cls.navbar} variant={cls.variant} expand="lg">
+//           <Navbar.Brand className={headerData.brand.wrapperClass}>
+//             <img
+//               src={headerData.brand.logo.src}
+//               alt={headerData.brand.logo.alt}
+//               className={headerData.brand.logo.className}
+//             />
+//           </Navbar.Brand>
+
+//           <Navbar.Toggle aria-controls="my-nav" className="marginRight" />
+//           <Navbar.Collapse id="my-nav">
+//             <Nav className="w-100 displayflex">
+//               {/* Left: Name */}
+//               <span className="disflex">
+//                 <div>
+//                   <Nav.Link href={headerData.user.profileHref}>
+//                     {headerData.user.firstName}
+//                     <span className="fw-bold">{headerData.user.lastName}</span>
+//                   </Nav.Link>
+//                 </div>
+//               </span>
+
+//               {/* Right: Theme toggle + menu */}
+//               <div className="disflex">
+//                 <Nav.Link href={headerData.toggleLinkHref}>
+//                   <div className={cls.moonSunWrapper} onClick={toggleHandler}>
+//                     {toggle ? (
+//                       <IoMoonOutline className="img-one" />
+//                     ) : (
+//                       <FiSun className="img-one text-dark" />
+//                     )}
+//                   </div>
+//                 </Nav.Link>
+
+//                 <Nav.Link href={headerData.menu.menuHref}>
+//                   <div className={cls.menuText}>{headerData.menu.label}</div>
+//                 </Nav.Link>
+
+//                 <Nav.Link href={headerData.menu.menuHref}>
+//                   <div className={headerData.menu.iconWrapperClass}>
+//                     <MdOutlineMenu
+//                       style={{ fontSize: headerData.menu.burgerIconSize }}
+//                     />
+//                   </div>
+//                 </Nav.Link>
+//               </div>
+//             </Nav>
+//           </Navbar.Collapse>
+//         </Navbar>
+//       </Container>
+//     </div>
+//   );
+// }
+// export default Header;
+
+
+
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import ParticleField from "./ParticleField";
 import { Container, Nav, Navbar } from "react-bootstrap";
@@ -126,12 +219,44 @@ import { MdOutlineMenu } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
 import { IoMoonOutline } from "react-icons/io5";
 import { MyContext } from "./MyContext";
-import headerData from "./data/Header.json";
+import headerDataFallback from "./data/Header.json";
 
 function Header() {
   const { toggle, toggleHandler } = useContext(MyContext);
+  const [items, setItems] = useState(null);
+  const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  // fetch headers (array)
+  useEffect(() => {
+    let ignore = false;
+    (async () => {
+      try {
+        setLoading(true);
+        setErr("");
+        const res = await fetch(`${process.env.REACT_APP_API_BASE}/api/headers`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();               // expects []
+        if (!ignore) setItems(Array.isArray(data) ? data : []);
+        console.log(data, "header data");
+      } catch (e) {
+        console.error("Header API error:", e);
+        if (!ignore) setErr(String(e.message || e));
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    })();
+    return () => { ignore = true; };
+  }, []);
+
+  // pick first header or fallback
+  const headerData = useMemo(() => {
+    if (items && items.length > 0) return items[0];
+    return headerDataFallback;
+  }, [items]);
+
   const theme = toggle ? "light" : "dark";
-  const cls = headerData.classes[theme];
+  const cls = headerData?.classes?.[theme] ?? headerDataFallback.classes[theme];
 
   return (
     <div>
@@ -142,13 +267,14 @@ function Header() {
         linkRadius={150}
         fadeOutMs={600}
       />
+
       <Container>
-        <Navbar className={cls.navbar} variant={cls.variant} expand="lg">
-          <Navbar.Brand className={headerData.brand.wrapperClass}>
+        <Navbar className={cls?.navbar} variant={cls?.variant} expand="lg">
+          <Navbar.Brand className={headerData?.brand?.wrapperClass}>
             <img
-              src={headerData.brand.logo.src}
-              alt={headerData.brand.logo.alt}
-              className={headerData.brand.logo.className}
+              src={headerData?.brand?.logo?.src}
+              alt={headerData?.brand?.logo?.alt || "logo"}
+              className={headerData?.brand?.logo?.className}
             />
           </Navbar.Brand>
 
@@ -158,17 +284,17 @@ function Header() {
               {/* Left: Name */}
               <span className="disflex">
                 <div>
-                  <Nav.Link href={headerData.user.profileHref}>
-                    {headerData.user.firstName}
-                    <span className="fw-bold">{headerData.user.lastName}</span>
+                  <Nav.Link href={headerData?.user?.profileHref || "#"}>
+                    {headerData?.user?.firstName}{" "}
+                    <span className="fw-bold">{headerData?.user?.lastName}</span>
                   </Nav.Link>
                 </div>
               </span>
 
               {/* Right: Theme toggle + menu */}
               <div className="disflex">
-                <Nav.Link href={headerData.toggleLinkHref}>
-                  <div className={cls.moonSunWrapper} onClick={toggleHandler}>
+                <Nav.Link href={headerData?.toggleLinkHref || "#"}>
+                  <div className={cls?.moonSunWrapper} onClick={toggleHandler}>
                     {toggle ? (
                       <IoMoonOutline className="img-one" />
                     ) : (
@@ -177,14 +303,14 @@ function Header() {
                   </div>
                 </Nav.Link>
 
-                <Nav.Link href={headerData.menu.menuHref}>
-                  <div className={cls.menuText}>{headerData.menu.label}</div>
+                <Nav.Link href={headerData?.menu?.menuHref || "#"}>
+                  <div className={cls?.menuText}>{headerData?.menu?.label}</div>
                 </Nav.Link>
 
-                <Nav.Link href={headerData.menu.menuHref}>
-                  <div className={headerData.menu.iconWrapperClass}>
+                <Nav.Link href={headerData?.menu?.menuHref || "#"}>
+                  <div className={headerData?.menu?.iconWrapperClass}>
                     <MdOutlineMenu
-                      style={{ fontSize: headerData.menu.burgerIconSize }}
+                      style={{ fontSize: headerData?.menu?.burgerIconSize || 24 }}
                     />
                   </div>
                 </Nav.Link>
@@ -192,8 +318,14 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+
+        {/* optional small status */}
+        {loading && <div className="small text-muted mt-1">Loading header…</div>}
+        {err && <div className="small text-danger mt-1">Failed: {err}</div>}
       </Container>
     </div>
   );
 }
+
 export default Header;
+
