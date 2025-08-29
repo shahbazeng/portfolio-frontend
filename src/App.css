@@ -2179,3 +2179,18 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------- */
 /* chatboot styling */
+@media (max-width: 992px) {
+  .manage-Img {
+    width: 377px !important;
+  }
+}
+@media (max-width: 768px) {
+  .manage-Img {
+    width: 312px !important;
+  }
+}
+@media (max-width: 576px) {
+  .manage-Img {
+    width: 221px !important;
+  }
+}
