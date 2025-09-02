@@ -1542,18 +1542,29 @@ function BannerCode() {
             {technologies.slice(0, 6).map((tech, index) => (
               <motion.div
                 key={`${tech.name}-${index}`}
-                className={positionClasses[index]}
+                className={`${positionClasses[index]} flex flex-col items-center`}
                 custom={index}
                 initial="hidden"
                 animate="visible"
                 variants={techBadgeVariants}
-                whileHover="hover"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.button className="fontSize">
-                  {tech.icon && (
-                    <img src={tech.icon} className="images" alt={tech.name} />
-                  )}{" "}
-                  {tech.name}
+                <motion.button
+                  className={`${toggle ? "fontSize" : "fontSize-dark"} 
+                  flex flex-col items-center p-2 rounded-xl 
+                  hover:bg-gray-800 hover:text-white transition-all`}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* ✅ icon with animation */}
+                  <motion.img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className="images w-12 h-12 object-contain"
+                    whileHover={{ scale: 1.3, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 250 }}
+                  />
+                  <span className="mt-2 text-sm">{tech.name}</span>
                 </motion.button>
               </motion.div>
             ))}
@@ -1628,22 +1639,32 @@ function BannerCode() {
             </div>
 
             <div className="backgroundColor"></div>
-
             {technologies.slice(0, 6).map((tech, index) => (
               <motion.div
                 key={`${tech.name}-${index}`}
-                className={positionClasses[index]}
+                className={`${positionClasses[index]} flex flex-col items-center`}
                 custom={index}
                 initial="hidden"
                 animate="visible"
                 variants={techBadgeVariants}
-                whileHover="hover"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.button className="fontSize-dark">
-                  {tech.icon && (
-                    <img src={tech.icon} className="images" alt={tech.name} />
-                  )}{" "}
-                  {tech.name}
+                <motion.button
+                  className={`${toggle ? "fontSize" : "fontSize-dark"} 
+                  flex flex-col items-center p-2 rounded-xl 
+                  hover:bg-gray-800 hover:text-white transition-all`}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* ✅ icon with animation */}
+                  <motion.img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className="images w-12 h-12 object-contain"
+                    whileHover={{ scale: 1.3, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 250 }}
+                  />
+                  <span className="mt-2 text-sm">{tech.name}</span>
                 </motion.button>
               </motion.div>
             ))}
@@ -1657,3 +1678,61 @@ function BannerCode() {
 }
 
 export default BannerCode;
+
+// import { FaReact, FaJsSquare } from "react-icons/fa";
+// import { SiNextdotjs, SiTailwindcss, SiGraphql, SiFigma } from "react-icons/si";
+// import { motion } from "framer-motion";
+
+// const SkillsShowcase = () => {
+//   const skills = [
+//     { name: "NextJS", icon: <SiNextdotjs className="text-black text-3xl" /> },
+//     {
+//       name: "Tailwind CSS",
+//       icon: <SiTailwindcss className="text-sky-500 text-3xl" />,
+//     },
+//     { name: "ReactJs", icon: <FaReact className="text-cyan-500 text-3xl" /> },
+//     {
+//       name: "JavaScript",
+//       icon: <FaJsSquare className="text-yellow-400 text-3xl" />,
+//     },
+//     { name: "GraphQL", icon: <SiGraphql className="text-pink-500 text-3xl" /> },
+//     { name: "Figma", icon: <SiFigma className="text-purple-500 text-3xl" /> },
+//   ];
+
+//   return (
+//     <section className="relative bg-black py-16">
+//       <div className="container mx-auto flex flex-col items-center">
+//         {/* Person Image */}
+//         <div className="relative z-10">
+//           <img
+//             src="/your-image.png"
+//             alt="Profile"
+//             className="w-[320px] rounded-full border-4 border-yellow-400 shadow-lg"
+//           />
+//         </div>
+
+//         {/* Orange Arc Background */}
+//         <div className="absolute bottom-0 left-0 right-0 h-[300px] bg-yellow-500 rounded-t-full"></div>
+
+//         {/* Skills Badges */}
+//         <div className="absolute top-10 w-full flex flex-wrap justify-center gap-6">
+//           {skills.map((skill, i) => (
+//             <motion.div
+//               key={i}
+//               initial={{ opacity: 0, y: -20 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               transition={{ delay: i * 0.15 }}
+//               whileHover={{ scale: 1.15, rotate: 5 }} // ✅ Hover Animation
+//               className="flex items-center gap-2 bg-white shadow-lg px-5 py-3 rounded-full cursor-pointer transition-all duration-300"
+//             >
+//               {skill.icon}
+//               <span className="font-medium">{skill.name}</span>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default SkillsShowcase;

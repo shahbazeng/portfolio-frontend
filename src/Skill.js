@@ -601,7 +601,7 @@ function Skill() {
     if (!totalGroups) return;
     const id = setInterval(() => {
       setActiveTechGroup((prev) => (prev + 1) % totalGroups);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(id);
   }, [totalGroups]);
 
