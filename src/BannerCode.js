@@ -1470,13 +1470,13 @@ function BannerCode() {
   return toggle ? (
     <>
       <div className="hero">
-        <ParticleField
+        {/* <ParticleField
           dotColor="rgba(255,255,255,0.9)"
           lineColor="rgba(255,255,255,0.45)"
           density={0.001}
           linkRadius={150}
           fadeOutMs={600}
-        />
+        /> */}
         <Container>
           <motion.div
             initial="hidden"

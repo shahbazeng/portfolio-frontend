@@ -209,7 +209,7 @@ function About() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.3 }}
           >
-            {toggle ? about?.user?.name : "I Love"}
+            {toggle ? about?.user?.name : about?.user?.name || "I Love"}
           </motion.span>
         </motion.div>
 

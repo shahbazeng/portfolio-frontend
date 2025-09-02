@@ -209,8 +209,6 @@
 // }
 // export default Header;
 
-
-
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import ParticleField from "./ParticleField";
@@ -234,9 +232,11 @@ function Header() {
       try {
         setLoading(true);
         setErr("");
-        const res = await fetch(`${process.env.REACT_APP_API_BASE}/api/headers`);
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE}/api/headers`
+        );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();               // expects []
+        const data = await res.json(); // expects []
         if (!ignore) setItems(Array.isArray(data) ? data : []);
         console.log(data, "header data");
       } catch (e) {
@@ -246,7 +246,9 @@ function Header() {
         if (!ignore) setLoading(false);
       }
     })();
-    return () => { ignore = true; };
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   // pick first header or fallback
@@ -260,13 +262,13 @@ function Header() {
 
   return (
     <div>
-      <ParticleField
+      {/* <ParticleField
         dotColor="rgba(255,255,255,0.9)"
         lineColor="rgba(255,255,255,0.45)"
         density={0.001}
         linkRadius={150}
         fadeOutMs={600}
-      />
+      /> */}
 
       <Container>
         <Navbar className={cls?.navbar} variant={cls?.variant} expand="lg">
@@ -286,7 +288,9 @@ function Header() {
                 <div>
                   <Nav.Link href={headerData?.user?.profileHref || "#"}>
                     {headerData?.user?.firstName}{" "}
-                    <span className="fw-bold">{headerData?.user?.lastName}</span>
+                    <span className="fw-bold">
+                      {headerData?.user?.lastName}
+                    </span>
                   </Nav.Link>
                 </div>
               </span>
@@ -310,7 +314,9 @@ function Header() {
                 <Nav.Link href={headerData?.menu?.menuHref || "#"}>
                   <div className={headerData?.menu?.iconWrapperClass}>
                     <MdOutlineMenu
-                      style={{ fontSize: headerData?.menu?.burgerIconSize || 24 }}
+                      style={{
+                        fontSize: headerData?.menu?.burgerIconSize || 24,
+                      }}
                     />
                   </div>
                 </Nav.Link>
@@ -320,7 +326,9 @@ function Header() {
         </Navbar>
 
         {/* optional small status */}
-        {loading && <div className="small text-muted mt-1">Loading header…</div>}
+        {loading && (
+          <div className="small text-muted mt-1">Loading header…</div>
+        )}
         {err && <div className="small text-danger mt-1">Failed: {err}</div>}
       </Container>
     </div>
@@ -328,4 +336,3 @@ function Header() {
 }
 
 export default Header;
-
