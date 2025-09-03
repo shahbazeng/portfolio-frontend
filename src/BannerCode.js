@@ -768,87 +768,87 @@
 //   };
 
 //   // 🔹 Real-time email validation
-//   const handleEmailChange = (value) => {
-//     setEmail(value);
-//     if (value && !value.includes("@")) {
-//       setEmailError("Please enter a valid email with '@'");
-//     } else {
-//       setEmailError("");
-//     }
-//   };
+// const handleEmailChange = (value) => {
+//   setEmail(value);
+//   if (value && !value.includes("@")) {
+//     setEmailError("Please enter a valid email with '@'");
+//   } else {
+//     setEmailError("");
+//   }
+// };
 
 //   // 🔹 Real-time mobile validation
-//   const handleMobileChange = (value) => {
-//     setMobile(value);
-//     if (value && !/^\d+$/.test(value)) {
-//       setMobileError("Mobile number must contain only digits");
-//     } else {
-//       setMobileError("");
-//     }
-//   };
+// const handleMobileChange = (value) => {
+//   setMobile(value);
+//   if (value && !/^\d+$/.test(value)) {
+//     setMobileError("Mobile number must contain only digits");
+//   } else {
+//     setMobileError("");
+//   }
+// };
 
-//   const validateFields = () => {
-//     let valid = true;
-//     setErr(false);
+// const validateFields = () => {
+//   let valid = true;
+//   setErr(false);
 
-//     if (!name || !email || !mobile || !subject || !message) {
-//       setErr(true);
-//       valid = false;
-//     }
+//   if (!name || !email || !mobile || !subject || !message) {
+//     setErr(true);
+//     valid = false;
+//   }
 
-//     if (email && !email.includes("@")) {
-//       setEmailError("Please enter a valid email with '@'");
-//       valid = false;
-//     }
+//   if (email && !email.includes("@")) {
+//     setEmailError("Please enter a valid email with '@'");
+//     valid = false;
+//   }
 
-//     if (mobile && !/^\d+$/.test(mobile)) {
-//       setMobileError("Mobile number must contain only digits");
-//       valid = false;
-//     }
+//   if (mobile && !/^\d+$/.test(mobile)) {
+//     setMobileError("Mobile number must contain only digits");
+//     valid = false;
+//   }
 
-//     return valid;
-//   };
+//   return valid;
+// };
 
-//   const submitHandler = async () => {
-//     if (!validateFields()) return;
+// const submitHandler = async () => {
+//   if (!validateFields()) return;
 
-//     try {
-//       const response = await axios.post(
-//         `${process.env.REACT_APP_API_BASE}/api/forms`,
-//         {
-//           name,
-//           email,
-//           mobile,
-//           subject,
-//           message,
-//         }
-//       );
-//       console.log({
-//         data: "data submitted successfully",
-//         response: response.data,
-//       });
-
-//       if (response.status === 200) {
-//         console.log(response.data, "data submitted successfully");
-//         // Reset form
-//         setName("");
-//         setEmail("");
-//         setMobile("");
-//         setSubject("");
-//         setMessage("");
+//   try {
+//     const response = await axios.post(
+//       `${process.env.REACT_APP_API_BASE}/api/forms`,
+//       {
+//         name,
+//         email,
+//         mobile,
+//         subject,
+//         message,
 //       }
-//     } catch (error) {
-//       console.log("data submitted rejected", error);
+//     );
+//     console.log({
+//       data: "data submitted successfully",
+//       response: response.data,
+//     });
+
+//     if (response.status === 200) {
+//       console.log(response.data, "data submitted successfully");
+//       // Reset form
+//       setName("");
+//       setEmail("");
+//       setMobile("");
+//       setSubject("");
+//       setMessage("");
 //     }
-//   };
+//   } catch (error) {
+//     console.log("data submitted rejected", error);
+//   }
+// };
 
 //   const hireSetup = () => {
 //     setOpen_Close(true);
 //   };
 
-//   const togglecloseIcon = () => {
-//     setOpen_Close(false);
-//   };
+// const togglecloseIcon = () => {
+//   setOpen_Close(false);
+// };
 
 // useEffect(() => {
 //   async function fetchData() {
@@ -1174,138 +1174,138 @@
 //           </div>
 //         </Container>
 
-//         {open_close ? (
-//           <div className="overlay-section">
-//             <div className="form-popup">
-//               <RxCross2
-//                 className="popup-module-close"
-//                 onClick={togglecloseIcon}
+// {open_close ? (
+//   <div className="overlay-section">
+//     <div className="form-popup">
+//       <RxCross2
+//         className="popup-module-close"
+//         onClick={togglecloseIcon}
+//       />
+//       <Container className="bg-white p-5">
+//         <Row className="mt-3 mb-3">
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (4).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Full Name*"
+//                 className="BorderNone"
+//                 value={name}
+//                 onChange={(e) => setName(e.target.value)}
 //               />
-//               <Container className="bg-white p-5">
-//                 <Row className="mt-3 mb-3">
-//                   <Col xs={12} sm={6}>
-//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
-//                       <div className="backgroundColorDifferent">
-//                         <img
-//                           src="/Frame (4).png"
-//                           alt="user-profile"
-//                           style={{ width: "20px" }}
-//                         />
-//                       </div>
-//                       <Form.Control
-//                         type="text"
-//                         placeholder="Full Name*"
-//                         className="BorderNone"
-//                         value={name}
-//                         onChange={(e) => setName(e.target.value)}
-//                       />
-//                     </Form.Group>
-//                     {err && !name && (
-//                       <div className="text-danger">Name is required</div>
-//                     )}
-//                   </Col>
+//             </Form.Group>
+//             {err && !name && (
+//               <div className="text-danger">Name is required</div>
+//             )}
+//           </Col>
 
-//                   <Col xs={12} sm={6}>
-//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
-//                       <div className="backgroundColorDifferent">
-//                         <img
-//                           src="/Frame (5).png"
-//                           alt="user-profile"
-//                           style={{ width: "20px" }}
-//                         />
-//                       </div>
-//                       <Form.Control
-//                         type="text"
-//                         placeholder="Email*"
-//                         className="BorderNone"
-//                         value={email}
-//                         onChange={(e) => handleEmailChange(e.target.value)}
-//                       />
-//                     </Form.Group>
-//                     {err && !email && (
-//                       <div className="text-danger">Email is required</div>
-//                     )}
-//                     {emailError && (
-//                       <div className="text-danger">{emailError}</div>
-//                     )}
-//                   </Col>
-//                 </Row>
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (5).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Email*"
+//                 className="BorderNone"
+//                 value={email}
+//                 onChange={(e) => handleEmailChange(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !email && (
+//               <div className="text-danger">Email is required</div>
+//             )}
+//             {emailError && (
+//               <div className="text-danger">{emailError}</div>
+//             )}
+//           </Col>
+//         </Row>
 
-//                 <Row className="mt-2 mb-3">
-//                   <Col xs={12} sm={6}>
-//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
-//                       <div className="backgroundColorDifferent">
-//                         <img
-//                           src="/Frame (6).png"
-//                           alt="user-profile"
-//                           style={{ width: "20px" }}
-//                         />
-//                       </div>
-//                       <Form.Control
-//                         type="text"
-//                         placeholder="Mobile No."
-//                         className="BorderNone"
-//                         value={mobile}
-//                         onChange={(e) => handleMobileChange(e.target.value)}
-//                       />
-//                     </Form.Group>
-//                     {err && !mobile && (
-//                       <div className="text-danger">Mobile is required</div>
-//                     )}
-//                     {mobileError && (
-//                       <div className="text-danger">{mobileError}</div>
-//                     )}
-//                   </Col>
+//         <Row className="mt-2 mb-3">
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <div className="backgroundColorDifferent">
+//                 <img
+//                   src="/Frame (6).png"
+//                   alt="user-profile"
+//                   style={{ width: "20px" }}
+//                 />
+//               </div>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Mobile No."
+//                 className="BorderNone"
+//                 value={mobile}
+//                 onChange={(e) => handleMobileChange(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !mobile && (
+//               <div className="text-danger">Mobile is required</div>
+//             )}
+//             {mobileError && (
+//               <div className="text-danger">{mobileError}</div>
+//             )}
+//           </Col>
 
-//                   <Col xs={12} sm={6}>
-//                     <Form.Group className="mt-3 mb-3 image-inputField-flex">
-//                       <Form.Control
-//                         type="text"
-//                         placeholder="Subject*"
-//                         className="BorderNone-one"
-//                         value={subject}
-//                         onChange={(e) => setSubject(e.target.value)}
-//                       />
-//                     </Form.Group>
-//                     {err && !subject && (
-//                       <div className="text-danger">Subject is required</div>
-//                     )}
-//                   </Col>
-//                 </Row>
+//           <Col xs={12} sm={6}>
+//             <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Subject*"
+//                 className="BorderNone-one"
+//                 value={subject}
+//                 onChange={(e) => setSubject(e.target.value)}
+//               />
+//             </Form.Group>
+//             {err && !subject && (
+//               <div className="text-danger">Subject is required</div>
+//             )}
+//           </Col>
+//         </Row>
 
-//                 <Row>
-//                   <Form.Group className="mt-3 mb-3 image-inputField-flex">
-//                     <textarea
-//                       placeholder="Message*"
-//                       className="BorderNone-one height-width-setup"
-//                       value={message}
-//                       onChange={(e) => setMessage(e.target.value)}
-//                     ></textarea>
-//                   </Form.Group>
-//                   {err && !message && (
-//                     <div className="text-danger">Message is required</div>
-//                   )}
+//         <Row>
+//           <Form.Group className="mt-3 mb-3 image-inputField-flex">
+//             <textarea
+//               placeholder="Message*"
+//               className="BorderNone-one height-width-setup"
+//               value={message}
+//               onChange={(e) => setMessage(e.target.value)}
+//             ></textarea>
+//           </Form.Group>
+//           {err && !message && (
+//             <div className="text-danger">Message is required</div>
+//           )}
 
-//                   <div>
-//                     <button
-//                       className="imageAndtextButton-one"
-//                       onClick={submitHandler}
-//                     >
-//                       Send{" "}
-//                       <img
-//                         src="/Livello_2 (1).png"
-//                         alt="livello"
-//                         className="inner-image-button-one"
-//                       />
-//                     </button>
-//                   </div>
-//                 </Row>
-//               </Container>
-//             </div>
+//           <div>
+//             <button
+//               className="imageAndtextButton-one"
+//               onClick={submitHandler}
+//             >
+//               Send{" "}
+//               <img
+//                 src="/Livello_2 (1).png"
+//                 alt="livello"
+//                 className="inner-image-button-one"
+//               />
+//             </button>
 //           </div>
-//         ) : (
-//           ""
-//         )}
+//         </Row>
+//       </Container>
+//     </div>
+//   </div>
+// ) : (
+//   ""
+// )}
 //       </div>
 //     </>
 //   );
@@ -1341,6 +1341,79 @@ function BannerCode() {
       }
     })();
   }, []);
+
+  const togglecloseIcon = () => {
+    setOpen_Close(false);
+  };
+  const submitHandler = async () => {
+    if (!validateFields()) return;
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE}/api/forms`,
+        {
+          name,
+          email,
+          mobile,
+          subject,
+          message,
+        }
+      );
+      console.log({
+        data: "data submitted successfully",
+        response: response.data,
+      });
+
+      if (response.status === 200) {
+        console.log(response.data, "data submitted successfully");
+        // Reset form
+        setName("");
+        setEmail("");
+        setMobile("");
+        setSubject("");
+        setMessage("");
+      }
+    } catch (error) {
+      console.log("data submitted rejected", error);
+    }
+  };
+  const handleMobileChange = (value) => {
+    setMobile(value);
+    if (value && !/^\d+$/.test(value)) {
+      setMobileError("Mobile number must contain only digits");
+    } else {
+      setMobileError("");
+    }
+  };
+  const handleEmailChange = (value) => {
+    setEmail(value);
+    if (value && !value.includes("@")) {
+      setEmailError("Please enter a valid email with '@'");
+    } else {
+      setEmailError("");
+    }
+  };
+  const validateFields = () => {
+    let valid = true;
+    setErr(false);
+
+    if (!name || !email || !mobile || !subject || !message) {
+      setErr(true);
+      valid = false;
+    }
+
+    if (email && !email.includes("@")) {
+      setEmailError("Please enter a valid email with '@'");
+      valid = false;
+    }
+
+    if (mobile && !/^\d+$/.test(mobile)) {
+      setMobileError("Mobile number must contain only digits");
+      valid = false;
+    }
+
+    return valid;
+  };
   const ui = banner || bannerData; // unified source for hero
 
   // ---------------- existing state below unchanged ----------------
@@ -1492,13 +1565,13 @@ function BannerCode() {
             </motion.div>
 
             <motion.div variants={textVariants} className="textbtncenter">
-              with{" "}
+              with
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {experience}
-              </motion.button>{" "}
+              </motion.button>
               Experience
             </motion.div>
 
@@ -1570,7 +1643,138 @@ function BannerCode() {
             ))}
           </div>
         </Container>
+        {open_close ? (
+          <div className="overlay-section">
+            <div className="form-popup">
+              <RxCross2
+                className="popup-module-close"
+                onClick={togglecloseIcon}
+              />
+              <Container className="bg-white p-5">
+                <Row className="mt-3 mb-3">
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (4).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Full Name*"
+                        className="BorderNone"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !name && (
+                      <div className="text-danger">Name is required</div>
+                    )}
+                  </Col>
 
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (5).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Email*"
+                        className="BorderNone"
+                        value={email}
+                        onChange={(e) => handleEmailChange(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !email && (
+                      <div className="text-danger">Email is required</div>
+                    )}
+                    {emailError && (
+                      <div className="text-danger">{emailError}</div>
+                    )}
+                  </Col>
+                </Row>
+
+                <Row className="mt-2 mb-3">
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (6).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Mobile No."
+                        className="BorderNone"
+                        value={mobile}
+                        onChange={(e) => handleMobileChange(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !mobile && (
+                      <div className="text-danger">Mobile is required</div>
+                    )}
+                    {mobileError && (
+                      <div className="text-danger">{mobileError}</div>
+                    )}
+                  </Col>
+
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <Form.Control
+                        type="text"
+                        placeholder="Subject*"
+                        className="BorderNone-one"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !subject && (
+                      <div className="text-danger">Subject is required</div>
+                    )}
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                    <textarea
+                      placeholder="Message*"
+                      className="BorderNone-one height-width-setup"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                  </Form.Group>
+                  {err && !message && (
+                    <div className="text-danger">Message is required</div>
+                  )}
+
+                  <div>
+                    <button
+                      className="imageAndtextButton-one"
+                      onClick={submitHandler}
+                    >
+                      Send{" "}
+                      <img
+                        src="/Livello_2 (1).png"
+                        alt="livello"
+                        className="inner-image-button-one"
+                      />
+                    </button>
+                  </div>
+                </Row>
+              </Container>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
         {/* 🔴 form/modal code below remains as-is (ignore as requested) */}
         {/* ... your existing modal with form ... */}
       </div>
@@ -1671,7 +1875,138 @@ function BannerCode() {
           </div>
         </Container>
 
-        {/* 🔴 form/modal code below remains as-is (ignore as requested) */}
+        {open_close ? (
+          <div className="overlay-section">
+            <div className="form-popup">
+              <RxCross2
+                className="popup-module-close"
+                onClick={togglecloseIcon}
+              />
+              <Container className="bg-white p-5">
+                <Row className="mt-3 mb-3">
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (4).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Full Name*"
+                        className="BorderNone"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !name && (
+                      <div className="text-danger">Name is required</div>
+                    )}
+                  </Col>
+
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (5).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Email*"
+                        className="BorderNone"
+                        value={email}
+                        onChange={(e) => handleEmailChange(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !email && (
+                      <div className="text-danger">Email is required</div>
+                    )}
+                    {emailError && (
+                      <div className="text-danger">{emailError}</div>
+                    )}
+                  </Col>
+                </Row>
+
+                <Row className="mt-2 mb-3">
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <div className="backgroundColorDifferent">
+                        <img
+                          src="/Frame (6).png"
+                          alt="user-profile"
+                          style={{ width: "20px" }}
+                        />
+                      </div>
+                      <Form.Control
+                        type="text"
+                        placeholder="Mobile No."
+                        className="BorderNone"
+                        value={mobile}
+                        onChange={(e) => handleMobileChange(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !mobile && (
+                      <div className="text-danger">Mobile is required</div>
+                    )}
+                    {mobileError && (
+                      <div className="text-danger">{mobileError}</div>
+                    )}
+                  </Col>
+
+                  <Col xs={12} sm={6}>
+                    <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                      <Form.Control
+                        type="text"
+                        placeholder="Subject*"
+                        className="BorderNone-one"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                      />
+                    </Form.Group>
+                    {err && !subject && (
+                      <div className="text-danger">Subject is required</div>
+                    )}
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Form.Group className="mt-3 mb-3 image-inputField-flex">
+                    <textarea
+                      placeholder="Message*"
+                      className="BorderNone-one height-width-setup"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                  </Form.Group>
+                  {err && !message && (
+                    <div className="text-danger">Message is required</div>
+                  )}
+
+                  <div>
+                    <button
+                      className="imageAndtextButton-one"
+                      onClick={submitHandler}
+                    >
+                      Send{" "}
+                      <img
+                        src="/Livello_2 (1).png"
+                        alt="livello"
+                        className="inner-image-button-one"
+                      />
+                    </button>
+                  </div>
+                </Row>
+              </Container>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
