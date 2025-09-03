@@ -1,0 +1,32 @@
+{
+  "heading": {
+    "title": "Our Track Record",
+    "subtitle": "Numbers that speak for themselves"
+  },
+  "stats": [
+    {
+      "to": 5,
+      "suffix": "+",
+      "label": "Years of Experience",
+      "duration": 700
+    },
+    {
+      "to": 200,
+      "suffix": "+",
+      "label": "Complete Projects",
+      "duration": 700
+    },
+    {
+      "to": 150,
+      "suffix": "+",
+      "label": "Happy Clients",
+      "duration": 700
+    },
+    {
+      "to": 50,
+      "suffix": "+",
+      "label": "Awards",
+      "duration": 700
+    }
+  ]
+}

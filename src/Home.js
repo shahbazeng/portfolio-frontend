@@ -12,6 +12,7 @@ import FormData from "./FormData";
 import Footer from "./Footer";
 // import ChatWidget from "./ChatWidget";
 import ChatWidget from "./ChatWidget";
+import StatsSection from "./StatsSection";
 
 function Home() {
   return (
@@ -20,8 +21,10 @@ function Home() {
       <About />
       <Education />
       <Experiance />
+      <StatsSection />
       <Certificate />
       <Skill />
+
       <Project />
       <CardComponent />
       <CheckoutResume />
