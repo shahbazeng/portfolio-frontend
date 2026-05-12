@@ -549,16 +549,14 @@
 // export default Skill;
 
 // src/Skill.jsx
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./App.css";
-import { MyContext } from "./MyContext";
 import { Container } from "react-bootstrap";
 import { MdOutlineFileDownload } from "react-icons/md";
 import fallbackSkill from "./data/Skill.json";
 
 function Skill() {
-  // const { toggle } = useContext(MyContext);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 

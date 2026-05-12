@@ -375,14 +375,13 @@
 
 // export default Contact;
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { MyContext } from "./MyContext";
+
 import { Container } from "react-bootstrap";
 import contactFallback from "./data/Contact.json";
 
 function Contact() {
-  // const { toggle } = useContext(MyContext);
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 

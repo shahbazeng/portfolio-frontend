@@ -885,15 +885,13 @@
 
 // export default Project;
 // ------------------------------------------------------------------------------------------------
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import "./App.css";
-import { MyContext } from "./MyContext";
 import { Container, Row, Col } from "react-bootstrap";
 import projectData from "./data/Project.json"; // keeping this just for the title
 
 function Project() {
-  // const { toggle } = useContext(MyContext);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
