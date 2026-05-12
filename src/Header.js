@@ -274,7 +274,7 @@ function Header() {
         <Navbar className={cls?.navbar} variant={cls?.variant} expand="lg">
           <Navbar.Brand className={headerData?.brand?.wrapperClass}>
             <img
-              src={headerData?.brand?.logo?.src}
+              src={`${process.env.REACT_APP_API_BASE}`+headerData?.brand?.logo?.src.split(".com")[1]}
               alt={headerData?.brand?.logo?.alt || "logo"}
               className={headerData?.brand?.logo?.className}
             />
