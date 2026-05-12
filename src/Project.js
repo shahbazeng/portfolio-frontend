@@ -893,7 +893,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import projectData from "./data/Project.json"; // keeping this just for the title
 
 function Project() {
-  const { toggle } = useContext(MyContext);
+  // const { toggle } = useContext(MyContext);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 

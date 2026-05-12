@@ -558,7 +558,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import fallbackSkill from "./data/Skill.json";
 
 function Skill() {
-  const { toggle } = useContext(MyContext);
+  // const { toggle } = useContext(MyContext);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 

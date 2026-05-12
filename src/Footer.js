@@ -185,7 +185,7 @@ import { Container } from "react-bootstrap";
 import footerData from "./data/Footer.json"; // fallback if API fails/empty
 
 function Footer() {
-  const { toggle } = useContext(MyContext);
+  // const { toggle } = useContext(MyContext);
 
   const [apiItems, setApiItems] = useState(null); // will hold array from API
   const [loading, setLoading] = useState(true);

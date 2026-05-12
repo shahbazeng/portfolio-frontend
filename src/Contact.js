@@ -382,7 +382,7 @@ import { Container } from "react-bootstrap";
 import contactFallback from "./data/Contact.json";
 
 function Contact() {
-  const { toggle } = useContext(MyContext);
+  // const { toggle } = useContext(MyContext);
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
