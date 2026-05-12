@@ -390,22 +390,30 @@ function Contact() {
   const [contact, setContact] = useState(contactFallback);
   const BASE = (process.env.REACT_APP_API_BASE || "").replace(/\/+$/, "");
 
-  useEffect(() => {
-    // once-on-view animation
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => {
-      if (containerRef.current) observer.unobserve(containerRef.current);
-    };
-  }, []);
+useEffect(() => {
+  // once-on-view animation
+  const currentRef = containerRef.current;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
+
+  if (currentRef) {
+    observer.observe(currentRef);
+  }
+
+  return () => {
+    if (currentRef) {
+      observer.unobserve(currentRef);
+    }
+  };
+}, []);
 
   useEffect(() => {
     // fetch contacts (fallback to local on error)

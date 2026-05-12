@@ -551,31 +551,33 @@ function FormData() {
   const containerRef = useRef(null);
 
   const { toggle } = useContext(MyContext);
+  
+useEffect(() => {
+  const currentRef = containerRef.current;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
       }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
     }
+  );
 
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
-  }, []);
+  if (currentRef) {
+    observer.observe(currentRef);
+  }
+
+  return () => {
+    if (currentRef) {
+      observer.unobserve(currentRef);
+    }
+  };
+}, []);
 
   const handleEmailChange = (value) => {
     setEmail(value);
