@@ -18,8 +18,8 @@ function About() {
     const ac = new AbortController();
     (async () => {
       try {
-        // Agar aapki skills ya about data alag endpoint par hai
-        const response = await fetch(`${API_BASE}/api/skills`, {
+        // Corrected endpoint from /api/skills to /api/about
+        const response = await fetch(`${API_BASE}/api/about`, {
           signal: ac.signal,
           headers: { Accept: "application/json" },
         });
@@ -30,7 +30,7 @@ function About() {
         setRes(latestData);
       } catch (e) {
         if (e.name !== "AbortError") {
-          console.warn("Skills fetch using fallback", e);
+          console.warn("About fetch using fallback", e);
         }
         setRes(null);
       } finally {
@@ -40,11 +40,9 @@ function About() {
     return () => ac.abort();
   }, [API_BASE]);
 
-  // Backend response normalized format:
-  // Backend response safe parsing:
+  // Backend response safe parsing & fallback mapping
   const rawAbout = Array.isArray(res) ? res[res.length - 1] : (res || aboutFallback);
 
-  // Map fields seamlessly between MongoDB Schema and JSON Fallback
   const about = {
     sectionTitle: rawAbout?.sectionTitle || rawAbout?.title || "About Me",
     user: {
@@ -200,7 +198,7 @@ function About() {
                     >
                       <motion.img
                         src={item.icon || "/headphones 1.png"}
-                        style={{ width: "30px"  }}
+                        style={{ width: "30px" }}
                         whileHover={{ rotate: 15 }}
                       />
                       {item.title}
