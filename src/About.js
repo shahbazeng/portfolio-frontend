@@ -1,3 +1,4 @@
+// src/About.js
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import "./App.css";
@@ -18,19 +19,29 @@ function About() {
     const ac = new AbortController();
     (async () => {
       try {
-        // Corrected endpoint from /api/skills to /api/about
-        const response = await fetch(`${API_BASE}/api/about`, {
+        // Multiple endpoints try karenge taake 404 error na aaye agar route ka naam alag ho
+        let response = await fetch(`${API_BASE}/api/about`, {
           signal: ac.signal,
           headers: { Accept: "application/json" },
         });
+
+        if (!response.ok) {
+          response = await fetch(`${API_BASE}/api/abouts`, {
+            signal: ac.signal,
+            headers: { Accept: "application/json" },
+          });
+        }
+
+        if (!response.ok) {
+          throw new Error("About endpoint not found");
+        }
+
         const json = await response.json();
-        
-        // Agar array aati hai toh latest item uthayein
         const latestData = Array.isArray(json) && json.length ? json[json.length - 1] : json;
         setRes(latestData);
       } catch (e) {
         if (e.name !== "AbortError") {
-          console.warn("About fetch using fallback", e);
+          console.warn("About fetch using fallback JSON", e);
         }
         setRes(null);
       } finally {
