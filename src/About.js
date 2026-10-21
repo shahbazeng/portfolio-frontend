@@ -41,19 +41,20 @@ function About() {
   }, [API_BASE]);
 
   // Backend response normalized format:
-  const rawAbout = Array.isArray(res) && res.length ? res[0] : (res || aboutFallback);
+  // Backend response safe parsing:
+  const rawAbout = Array.isArray(res) ? res[res.length - 1] : (res || aboutFallback);
 
   // Map fields seamlessly between MongoDB Schema and JSON Fallback
   const about = {
-    sectionTitle: rawAbout?.sectionTitle || rawAbout?.title || "About Meeeeee",
+    sectionTitle: rawAbout?.sectionTitle || rawAbout?.title || "About Me",
     user: {
-      name: rawAbout?.user?.name || "Shahbaz Ali",
-      avatar: rawAbout?.avatar || rawAbout?.user?.avatar || "/Ellipse9.png",
-      description: rawAbout?.bio || rawAbout?.user?.description || "",
+      name: rawAbout?.user?.name || rawAbout?.name || "Shahbaz Ali",
+      avatar: rawAbout?.user?.avatar || rawAbout?.avatar || "/Ellipse9.png",
+      description: rawAbout?.user?.description || rawAbout?.bio || "",
     },
-    hobbies: rawAbout?.hobbies || aboutFallback.hobbies || [],
-    stats: rawAbout?.stats || aboutFallback.stats || [],
-    cta: rawAbout?.cta || aboutFallback.cta || { label: "Download", icon: "" },
+    hobbies: rawAbout?.hobbies?.length ? rawAbout.hobbies : aboutFallback.hobbies,
+    stats: rawAbout?.stats?.length ? rawAbout.stats : aboutFallback.stats,
+    cta: rawAbout?.cta?.label ? rawAbout.cta : aboutFallback.cta,
   };
 
   const [animatedText, setAnimatedText] = useState("");
